@@ -1,0 +1,23 @@
+{
+    "name": "bearcms/universal-theme-addon",
+    "description": "Universal Theme for Bear CMS",
+    "keywords": ["universal", "theme", "Bear CMS"],
+    "homepage": "https://github.com/bearcms/universal-theme-addon",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bear CMS",
+            "email": "support@bearcms.com",
+            "homepage": "https://bearcms.com/"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "bearcms/bearframework-addon": "dev-master",
+        "bearframework/localization-addon": "0.2.*",
+        "bearframework/html-template": "0.2.*"
+    },
+    "autoload": {
+        "files": ["autoload.php"]
+    }
+}
