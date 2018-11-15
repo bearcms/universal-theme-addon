@@ -1,0 +1,27 @@
+{
+    "id": "bearcms/universal-theme-addon",
+    "name": "Universal Theme",
+    "description": "As the name implies, this theme is universal. Simple yet highly customizable it enables you to create websites that look great on desktops, tablets and smartphones. With multiple styles, you can use it for personal, business and fan websites. It provides a unique content block on the home page that can be used for news, promos or other welcoming information.",
+    "author": {
+        "name": "Bear CMS",
+        "email": "support@bearcms.com",
+        "homepage": "https://bearcms.com/"
+    },
+    "media": [
+        {
+            "filename": "/assets/1.jpg",
+            "width": 1024,
+            "height": 768
+        },
+        {
+            "filename": "/assets/2.jpg",
+            "width": 1024,
+            "height": 768
+        },
+        {
+            "filename": "/assets/3.jpg",
+            "width": 1024,
+            "height": 768
+        }
+    ]
+}
