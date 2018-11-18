@@ -142,7 +142,7 @@ return [
     'poweredByLinkCSS' => '{"color":"#ffffff","text-decoration":"none","text-decoration:hover":"underline","font-family":"Arial","font-size":"14px","line-height":"180%","margin-top":"20px"}',
     'poweredByLinkContainerCSS' => '{"text-align":"center"}',
     'footerContainerCSS' => '{"max-width":"800px","margin-left":"auto","margin-right":"auto","margin-top":"30px","margin-bottom":"30px","padding-left":"10px","padding-right":"10px"}',
-    'bodyCSS' => '{"background-color":"#111111","background-image":"url(addon:bearcms\/bearframework-addon:themes\/universal\/assets\/s5\/1.jpg)","background-position":"top center","background-repeat":"no-repeat","background-attachment":"fixed","background-size":"cover"}',
+    'bodyCSS' => '{"background-color":"#111111","background-image":"url(addon:bearcms\/bearframework-addon:assets\/s5\/1.jpg)","background-position":"top center","background-repeat":"no-repeat","background-attachment":"fixed","background-size":"cover"}',
     'blogPostPageTitleCSS' => '{"color":"#333333","font-family":"googlefonts:Spectral SC","font-size":"28px","text-align":"center","line-height":"180%","margin-top":"0","margin-right":"0","margin-bottom":"0","margin-left":"0"}',
     'blogPostPageDateCSS' => '{"color":"#777777","font-family":"Arial","text-align":"center","font-size":"14px","line-height":"180%"}',
     'blogPostPageContentCSS' => '{"padding-top":"15px"}',
