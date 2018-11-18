@@ -17,14 +17,14 @@ $app->bearCMS->themes
 
             $app->localization
             ->addDictionary('en', function() use ($context) {
-                return include $context->dir . '/themes/universal/locales/en.php';
+                return include $context->dir . '/locales/en.php';
             })
             ->addDictionary('bg', function() use ($context) {
-                return include $context->dir . '/themes/universal/locales/bg.php';
+                return include $context->dir . '/locales/bg.php';
             });
 
             $context->assets
-            ->addDir('themes/universal/assets');
+            ->addDir('assets');
 
             $version = '1.2';
             $version .= '.' . (int) $app->bearCMS->isWhitelabel();
@@ -36,13 +36,13 @@ $app->bearCMS->themes
                 },
                 'apply' => function($response, $options) use ($app, $context) {
                     if ($response instanceof App\Response\HTML) {
-                        $templateFilename = $context->dir . '/themes/universal/components/defaultTemplate.php';
+                        $templateFilename = $context->dir . '/components/defaultTemplate.php';
                         $hookName = 'bearCMSUniversalThemeDefaultTemplateCreated';
                     } elseif ($response instanceof App\Response\NotFound) {
-                        $templateFilename = $context->dir . '/themes/universal/components/unavailableTemplate.php';
+                        $templateFilename = $context->dir . '/components/unavailableTemplate.php';
                         $hookName = 'bearCMSUniversalThemeNotFoundTemplateCreated';
                     } elseif ($response instanceof App\Response\TemporaryUnavailable) {
-                        $templateFilename = $context->dir . '/themes/universal/components/unavailableTemplate.php';
+                        $templateFilename = $context->dir . '/components/unavailableTemplate.php';
                         $hookName = 'bearCMSUniversalThemeTemporaryUnavailableTemplateCreated';
                     } else {
                         return;
@@ -81,7 +81,7 @@ $app->bearCMS->themes
                         ],
                         'media' => [
                             [
-                                'filename' => $context->dir . '/themes/universal/assets/1.jpg',
+                                'filename' => $context->dir . '/assets/1.jpg',
                                 'width' => 1024,
                                 'height' => 768,
                             ]
@@ -89,8 +89,8 @@ $app->bearCMS->themes
                     ];
                 },
                 'options' => function() use ($context) {
-                    $options = include $context->dir . '/themes/universal/options.php';
-                    $values = require $context->dir . '/themes/universal/styles/1.php';
+                    $options = include $context->dir . '/options.php';
+                    $values = require $context->dir . '/styles/1.php';
                     foreach ($values as $id => $value) {
                         if (strpos($value, '{"') === 0) {
                             $values[$id] = json_decode($value, true);
@@ -100,7 +100,7 @@ $app->bearCMS->themes
                     return $options;
                 },
                 'styles' => function() use ($context) {
-                    return include $context->dir . '/themes/universal/styles.php';
+                    return include $context->dir . '/styles.php';
                 }
             ];
         });
