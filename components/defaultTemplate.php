@@ -13,20 +13,20 @@ $app = App::get();
 $settings = $app->bearCMS->data->settings->get();
 $isHomePage = (string) $app->request->path === '/';
 
-$headerLogoImage = $options['headerLogoImage'];
-$headerTitleVisibility = $options['headerTitleVisibility'];
-$headerDescriptionVisibility = $options['headerDescriptionVisibility'];
+$headerLogoImage = $options->getValue('headerLogoImage');
+$headerTitleVisibility = $options->getValue('headerTitleVisibility');
+$headerDescriptionVisibility = $options->getValue('headerDescriptionVisibility');
 
-$navigationVisibility = $options['navigationVisibility'];
-$navigationPosition = $options['navigationPosition'];
-$navigationItemCSS = !empty($options['navigationItemCSS']) ? json_decode($options['navigationItemCSS'], true) : [];
+$navigationVisibility = $options->getValue('navigationVisibility');
+$navigationPosition = $options->getValue('navigationPosition');
+$navigationItemCSS = $options->getValue('navigationItemCSS');
+$navigationItemCSS = strlen($navigationItemCSS) > 0 ? json_decode($navigationItemCSS, true) : [];
 $navigationItemColor = isset($navigationItemCSS['color']) ? $navigationItemCSS['color'] : '#ffffff';
 $navigationItemHoverColor = isset($navigationItemCSS['color:hover']) ? $navigationItemCSS['color:hover'] : $navigationItemColor;
 $navigationItemActiveColor = isset($navigationItemCSS['color:active']) ? $navigationItemCSS['color:active'] : $navigationItemHoverColor;
 
-$homePageSpecialContentBlockVisibility = $options['homePageSpecialContentBlockVisibility'];
-$footerVisibility = $options['footerVisibility'];
-$poweredByLinkVisibility = (int) $options['poweredByLinkVisibility'] && !$isWhitelabel;
+$homePageSpecialContentBlockVisibility = $options->getValue('homePageSpecialContentBlockVisibility');
+$footerVisibility = $options->getValue('footerVisibility');
 ?><html>
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,minimal-ui">
@@ -125,10 +125,10 @@ $poweredByLinkVisibility = (int) $options['poweredByLinkVisibility'] && !$isWhit
             echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
         }
         if ($headerTitleVisibility === '1') {
-            echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . $app->request->base . '">' . htmlspecialchars($settings['title']) . '</a></div></div>';
+            echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . $app->request->base . '">' . htmlspecialchars($settings->title) . '</a></div></div>';
         }
         if ($headerDescriptionVisibility === '1') {
-            echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings['description']) . '</div></div></div>';
+            echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->description) . '</div></div></div>';
         }
 
         echo '</header>';
@@ -156,11 +156,6 @@ $poweredByLinkVisibility = (int) $options['poweredByLinkVisibility'] && !$isWhit
             echo '<div class="template-footer-container">';
             echo '<footer class="template-footer">';
             echo '<component src="bearcms-elements" editable="true" class="footer-bearcms-elements" id="footer"/>';
-            if ($poweredByLinkVisibility) {
-                echo '<div class="template-powered-by-link-container">';
-                echo '<a class="template-powered-by-link" href="https://bearcms.com/" target="_blank" rel="noopener">Powered by BearCMS</a>';
-                echo '</div>';
-            }
             echo '</footer>';
             echo '</div>';
         }
