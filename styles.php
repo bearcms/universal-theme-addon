@@ -14,6 +14,7 @@ $context = $app->context->get(__FILE__);
 
 return [
     [
+        'name' => 'Стил 1',
         'media' => [
             [
                 'filename' => $context->dir . '/assets/1.jpg',
@@ -24,6 +25,7 @@ return [
         'values' => require $context->dir . '/styles/1.php'
     ],
     [
+        'name' => 'Стил 2',
         'media' => [
             [
                 'filename' => $context->dir . '/assets/2.jpg',
@@ -34,6 +36,7 @@ return [
         'values' => require $context->dir . '/styles/2.php'
     ],
     [
+        'name' => 'Стил 3',
         'media' => [
             [
                 'filename' => $context->dir . '/assets/3.jpg',
@@ -44,6 +47,7 @@ return [
         'values' => require $context->dir . '/styles/3.php'
     ],
     [
+        'name' => 'Стил 4',
         'media' => [
             [
                 'filename' => $context->dir . '/assets/4.jpg',
@@ -54,6 +58,7 @@ return [
         'values' => require $context->dir . '/styles/4.php'
     ],
     [
+        'name' => 'Стил 5',
         'media' => [
             [
                 'filename' => $context->dir . '/assets/5.jpg',

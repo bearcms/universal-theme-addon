@@ -11,111 +11,142 @@ use BearFramework\App;
 
 $app = App::get();
 
-$schema = $app->bearCMS->themes->makeOptionsSchema();
+$options = $app->bearCMS->themes->makeOptionsDefinition();
 
-$headerGroup = $schema->addGroup(__("bearcms.themes.universal.options.Header"));
-$headerGroup->addOption("headerCSS", "css", "", [
-    "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-    "cssOutput" => [
-        ["rule", ".template-header", "box-sizing:border-box;"],
-        ["selector", ".template-header"]
-    ]
-]);
-
-$headerLogoGroup = $headerGroup->addGroup(__("bearcms.themes.universal.options.Logo"));
-$headerLogoGroup
-        ->addOption("headerLogoImage", "image", __("bearcms.themes.universal.options.Image"))
-        ->addOption("headerLogoImageCSS", "css", "", [
-            "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-header-logo", "box-sizing:border-box;display:inline-block;overflow:hidden;font-size:0;"],
-                ["selector", ".template-header-logo"]
-            ]
-        ]);
-$headerLogoContainerGroup = $headerLogoGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$headerLogoContainerGroup
-        ->addOption("headerLogoImageContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
-            "cssOutput" => [
-                ["rule", ".template-header-logo-container", "box-sizing:border-box;"],
-                ["selector", ".template-header-logo-container"]
-            ]
-        ]);
-
-$headerTitleGroup = $headerGroup->addGroup(__("bearcms.themes.universal.options.Title"));
-$headerTitleGroup
-        ->addOption("headerTitleVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
-            "values" => [
-                [
-                    "value" => "1",
-                    "name" => __("bearcms.themes.universal.options.Visible")
-                ],
-                [
-                    "value" => "0",
-                    "name" => __("bearcms.themes.universal.options.Hidden")
-                ]
-            ]
-        ])
-        ->addOption("headerTitleCSS", "css", "", [
-            "cssOutput" => [
-                ["rule", ".template-header-title", "display:inline-block;text-decoration:none;"],
-                ["selector", ".template-header-title"]
-            ]
-        ]);
-$headerTitleContainerGroup = $headerTitleGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$headerTitleContainerGroup
-        ->addOption("headerTitleContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
-            "cssOutput" => [
-                ["rule", ".template-header-title-container", "box-sizing:border-box;"],
-                ["selector", ".template-header-title-container"]
-            ]
-        ]);
-
-$headerDescriptionGroup = $headerGroup->addGroup(__("bearcms.themes.universal.options.Description"));
-$headerDescriptionGroup
-        ->addOption("headerDescriptionVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
-            "values" => [
-                [
-                    "value" => "1",
-                    "name" => __("bearcms.themes.universal.options.Visible")
-                ],
-                [
-                    "value" => "0",
-                    "name" => __("bearcms.themes.universal.options.Hidden")
-                ]
-            ]
-        ])
-        ->addOption("headerDescriptionCSS", "css", "", [
-            "cssTypes" => ["cssText", "cssTextShadow", "cssBackground", "cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;"],
-                ["selector", ".template-header-description"]
-            ]
-        ]);
-$headerDescriptionContainerGroup = $headerDescriptionGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$headerDescriptionContainerGroup
-        ->addOption("headerDescriptionContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
-            "cssOutput" => [
-                ["rule", ".template-header-description-container", "box-sizing:border-box;"],
-                ["selector", ".template-header-description-container"]
-            ]
-        ]);
-
-$headerContainerGroup = $headerGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$headerContainerGroup
-        ->addOption("headerContainerCSS", "css", "", [
+$options->addGroup(__("bearcms.themes.universal.options.Header"))
+        ->add([
+            "id" => "headerCSS",
+            "type" => "css",
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
             "cssOutput" => [
-                ["rule", ".template-header-container", "box-sizing:border-box;"],
-                ["selector", ".template-header-container"]
+                ["rule", ".template-header", "box-sizing:border-box;"],
+                ["selector", ".template-header"]
             ]
-        ]);
+        ])
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Logo"))
+                ->add([
+                    "id" => "headerLogoImage",
+                    "type" => "image",
+                    "name" => __("bearcms.themes.universal.options.Image")
+                ])
+                ->add([
+                    "id" => "headerLogoImageCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-header-logo", "box-sizing:border-box;display:inline-block;overflow:hidden;font-size:0;"],
+                        ["selector", ".template-header-logo"]
+                    ]
+                ])
+                ->add(
+                        $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                        ->add([
+                            "id" => "headerLogoImageContainerCSS",
+                            "type" => "css",
+                            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
+                            "cssOutput" => [
+                                ["rule", ".template-header-logo-container", "box-sizing:border-box;"],
+                                ["selector", ".template-header-logo-container"]
+                            ]
+                        ])
+                )
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Title"))
+                ->add([
+                    "id" => "headerTitleVisibility",
+                    "type" => "list",
+                    "name" => __("bearcms.themes.universal.options.Visibility"),
+                    "values" => [
+                        [
+                            "value" => "1",
+                            "name" => __("bearcms.themes.universal.options.Visible")
+                        ],
+                        [
+                            "value" => "0",
+                            "name" => __("bearcms.themes.universal.options.Hidden")
+                        ]
+                    ]
+                ])
+                ->add([
+                    "id" => "headerTitleCSS",
+                    "type" => "css",
+                    "cssOutput" => [
+                        ["rule", ".template-header-title", "display:inline-block;text-decoration:none;"],
+                        ["selector", ".template-header-title"]
+                    ]
+                ])
+                ->add(
+                        $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                        ->add([
+                            "id" => "headerTitleContainerCSS",
+                            "type" => "css",
+                            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
+                            "cssOutput" => [
+                                ["rule", ".template-header-title-container", "box-sizing:border-box;"],
+                                ["selector", ".template-header-title-container"]
+                            ]
+                        ])
+                )
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Description"))
+                ->add([
+                    "id" => "headerDescriptionVisibility",
+                    "type" => "list",
+                    "name" => __("bearcms.themes.universal.options.Visibility"),
+                    "values" => [
+                        [
+                            "value" => "1",
+                            "name" => __("bearcms.themes.universal.options.Visible")
+                        ],
+                        [
+                            "value" => "0",
+                            "name" => __("bearcms.themes.universal.options.Hidden")
+                        ]
+                    ]
+                ])
+                ->add([
+                    "id" => "headerDescriptionCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssText", "cssTextShadow", "cssBackground", "cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;"],
+                        ["selector", ".template-header-description"]
+                    ]
+                ])
+                ->add(
+                        $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                        ->add([
+                            "id" => "headerDescriptionContainerCSS",
+                            "type" => "css",
+                            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
+                            "cssOutput" => [
+                                ["rule", ".template-header-description-container", "box-sizing:border-box;"],
+                                ["selector", ".template-header-description-container"]
+                            ]
+                        ])
+                )
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                ->add([
+                    "id" => "headerContainerCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-header-container", "box-sizing:border-box;"],
+                        ["selector", ".template-header-container"]
+                    ]
+                ])
+);
 
-$navigationGroup = $schema->addGroup(__("bearcms.themes.universal.options.Navigation"));
-$navigationGroup
-        ->addOption("navigationVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
+$options->addGroup(__("bearcms.themes.universal.options.Navigation"))
+        ->add([
+            "id" => "navigationVisibility",
+            "type" => "list",
+            "name" => __("bearcms.themes.universal.options.Visibility"),
             "values" => [
                 [
                     "value" => "1",
@@ -127,7 +158,10 @@ $navigationGroup
                 ]
             ]
         ])
-        ->addOption("navigationPosition", "list", __("bearcms.themes.universal.options.Position"), [
+        ->add([
+            "id" => "navigationPosition",
+            "type" => "list",
+            "name" => __("bearcms.themes.universal.options.Position"),
             "values" => [
                 [
                     "value" => "1",
@@ -139,66 +173,86 @@ $navigationGroup
                 ]
             ]
         ])
-        ->addOption("navigationCSS", "css", "", [
+        ->add([
+            "id" => "navigationCSS",
+            "type" => "css",
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
             "cssOutput" => [
                 ["rule", ".template-navigation", "box-sizing:border-box;"],
                 ["selector", ".template-navigation"]
             ]
-        ]);
-$navigationItemGroup = $navigationGroup->addGroup(__("bearcms.themes.universal.options.Item"));
-$navigationItemGroup
-        ->addOption("navigationItemCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item", "display:inline-block;"],
-                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "display:block;white-space:nowrap;text-overflow:ellipsis;"],
-                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;"],
-                ["selector", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a"],
-                ["selector", ".template-navigation #template-navigation-toggle-button + label"],
-                ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"]
-            ]
-        ]);
-$navigationItemSelectedGroup = $navigationItemGroup->addGroup(__("bearcms.themes.universal.options.Selected"));
-$navigationItemSelectedGroup->addOption("navigationSelectedItemCSS", "css", "", [
-    "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-    "cssOutput" => [
-        ["selector", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item-selected > a"],
-        ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"]
-    ]
-]);
-$navigationItemSubitemGroup = $navigationItemGroup->addGroup(__("bearcms.themes.universal.options.Subitem"));
-$navigationItemSubitemGroup
-        ->addOption("navigationSubitemCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item", "display:block;"],
-                ["rule", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a", "display:block;white-space:nowrap;text-overflow:ellipsis;"],
-                ["rule", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a", "font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;"],
-                ["selector", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a"]
-            ]
-        ]);
-$navigationItemSubitemSelectedGroup = $navigationItemSubitemGroup->addGroup(__("bearcms.themes.universal.options.Selected"));
-$navigationItemSubitemSelectedGroup
-        ->addOption("navigationSelectedSubitemCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["selector", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected > a"]
-            ]
-        ]);
-$navigationContainerGroup = $navigationGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$navigationContainerGroup
-        ->addOption("navigationContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-navigation-container", "box-sizing:border-box;"],
-                ["selector", ".template-navigation-container"]
-            ]
-        ]);
+        ])
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Item"))
+                ->add([
+                    "id" => "navigationItemCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item", "display:inline-block;"],
+                        ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "display:block;white-space:nowrap;text-overflow:ellipsis;"],
+                        ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;"],
+                        ["selector", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a"],
+                        ["selector", ".template-navigation #template-navigation-toggle-button + label"],
+                        ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"]
+                    ]
+                ])
+                ->add(
+                        $options->makeGroup(__("bearcms.themes.universal.options.Selected"))
+                        ->add([
+                            "id" => "navigationSelectedItemCSS",
+                            "type" => "css",
+                            "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                            "cssOutput" => [
+                                ["selector", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item-selected > a"],
+                                ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"]
+                            ]
+                        ])
+                )
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Subitem"))
+                ->add([
+                    "id" => "navigationSubitemCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item", "display:block;"],
+                        ["rule", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a", "display:block;white-space:nowrap;text-overflow:ellipsis;"],
+                        ["rule", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a", "font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;"],
+                        ["selector", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a"]
+                    ]
+                ])
+                ->add(
+                        $options->makeGroup(__("bearcms.themes.universal.options.Selected"))
+                        ->add([
+                            "id" => "navigationSelectedSubitemCSS",
+                            "type" => "css",
+                            "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                            "cssOutput" => [
+                                ["selector", ".template-navigation .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected > a"]
+                            ]
+                        ])
+                )
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                ->add([
+                    "id" => "navigationContainerCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-navigation-container", "box-sizing:border-box;"],
+                        ["selector", ".template-navigation-container"]
+                    ]
+                ])
+);
 
-$homePageSpecialBlockGroup = $schema->addGroup(__("bearcms.themes.universal.options.Home page special block"), "This content block is placed above the navigation on the home page. It is useful for welcoming your visitors with images, videos or text.");
-$homePageSpecialBlockGroup
-        ->addOption("homePageSpecialContentBlockVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
+$options->addGroup(__("bearcms.themes.universal.options.Home page special block"), "This content block is placed above the navigation on the home page. It is useful for welcoming your visitors with images, videos or text.")
+        ->add([
+            "id" => "homePageSpecialContentBlockVisibility",
+            "type" => "list",
+            "name" => __("bearcms.themes.universal.options.Visibility"),
             "values" => [
                 [
                     "value" => "1",
@@ -210,53 +264,64 @@ $homePageSpecialBlockGroup
                 ]
             ]
         ])
-        ->addOption("homePageSpecialContentBlockCSS", "css", "", [
+        ->add([
+            "id" => "homePageSpecialContentBlockCSS",
+            "type" => "css",
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
             "cssOutput" => [
                 ["rule", ".template-homepage-special-content-block", "box-sizing:border-box;"],
                 ["selector", ".template-homepage-special-content-block"]
             ]
-        ]);
-$homePageSpecialBlockElementsGroup = $homePageSpecialBlockGroup->addGroup(__("bearcms.themes.universal.options.Elements"));
-$homePageSpecialBlockElementsGroup
-        ->addElements('homePageSpecialContentBlockElements', '.template-homepage-special-content-block');
+        ])
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Elements"))
+                ->addElements('homePageSpecialContentBlockElements', '.template-homepage-special-content-block')
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                ->add([
+                    "id" => "homePageSpecialContentBlockContainerCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-homepage-special-content-block-container", "box-sizing:border-box;"],
+                        ["selector", ".template-homepage-special-content-block-container"]
+                    ]
+                ])
+);
 
-$homePageSpecialBlockContainerGroup = $homePageSpecialBlockGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$homePageSpecialBlockContainerGroup
-        ->addOption("homePageSpecialContentBlockContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-homepage-special-content-block-container", "box-sizing:border-box;"],
-                ["selector", ".template-homepage-special-content-block-container"]
-            ]
-        ]);
-
-$contentGroup = $schema->addGroup(__("bearcms.themes.universal.options.Content"));
-$contentGroup
-        ->addOption("contentCSS", "css", "", [
+$options->addGroup(__("bearcms.themes.universal.options.Content"))
+        ->add([
+            "id" => "contentCSS",
+            "type" => "css",
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
             "cssOutput" => [
                 ["rule", ".template-content", "box-sizing:border-box;"],
                 ["selector", ".template-content"]
             ]
-        ]);
+        ])
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Elements"))
+                ->addElements('contentElements', '.template-content')
+        )
+        ->add(
+                $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                ->add([
+                    "id" => "contentContainerCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-content-container", "box-sizing:border-box;"],
+                        ["selector", ".template-content-container"]
+                    ]
+                ])
+);
 
-$contentElementsGroup = $contentGroup->addGroup(__("bearcms.themes.universal.options.Elements"));
-$contentElementsGroup
-        ->addElements('contentElements', '.template-content');
-$contentElementsContainerGroup = $contentGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$contentElementsContainerGroup
-        ->addOption("contentContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-content-container", "box-sizing:border-box;"],
-                ["selector", ".template-content-container"]
-            ]
-        ]);
-
-$footerGroup = $schema->addGroup(__("bearcms.themes.universal.options.Footer"));
-$footerGroup
-        ->addOption("footerVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
+$group = $options->addGroup(__("bearcms.themes.universal.options.Footer"))
+        ->add([
+            "id" => "footerVisibility",
+            "type" => "list",
+            "name" => __("bearcms.themes.universal.options.Visibility"),
             "values" => [
                 [
                     "value" => "1",
@@ -268,41 +333,98 @@ $footerGroup
                 ]
             ]
         ])
-        ->addOption("footerCSS", "css", "", [
+        ->add([
+            "id" => "footerCSS",
+            "type" => "css",
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
             "cssOutput" => [
                 ["rule", ".template-footer", "box-sizing:border-box;"],
                 ["selector", ".template-footer"]
             ]
-        ]);
+        ])
+        ->add(
+        $options->makeGroup(__("bearcms.themes.universal.options.Elements"))
+        ->addElements('footerElements', '.template-footer')
+);
 
-$footerElementsGroup = $footerGroup->addGroup(__("bearcms.themes.universal.options.Elements"));
-$footerElementsGroup
-        ->addElements('footerElements', '.template-footer');
+if (!$app->bearCMS->isWhitelabel()) {
+    $group->add(
+            $options->makeGroup(__("bearcms.themes.universal.options.Powered by link"), "This link is located at the bottom of your website and shows your visitors you are proud of using BearCMS")
+                    ->add([
+                        "id" => "poweredByLinkVisibility",
+                        "type" => "list",
+                        "name" => __("bearcms.themes.universal.options.Visibility"),
+                        "values" => [
+                            [
+                                "value" => "1",
+                                "name" => __("bearcms.themes.universal.options.Visible")
+                            ],
+                            [
+                                "value" => "0",
+                                "name" => __("bearcms.themes.universal.options.Hidden")
+                            ]
+                        ]
+                    ])
+                    ->add([
+                        "id" => "poweredByLinkCSS",
+                        "type" => "css",
+                        "cssOutput" => [
+                            ["rule", ".template-powered-by-link", "display:inline-block;"],
+                            ["selector", ".template-powered-by-link"]
+                        ]
+                    ])
+                    ->add(
+                            $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                            ->add([
+                                "id" => "poweredByLinkContainerCSS",
+                                "type" => "css",
+                                "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
+                                "cssOutput" => [
+                                    ["rule", ".template-powered-by-link-container", "box-sizing:border-box;"],
+                                    ["selector", ".template-powered-by-link-container"]
+                                ]
+                            ])
+                    )
+    );
+}
 
-$footerContainerGroup = $footerGroup->addGroup(__("bearcms.themes.universal.options.Container"));
-$footerContainerGroup
-        ->addOption("footerContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOutput" => [
-                ["rule", ".template-footer-container", "box-sizing:border-box;"],
-                ["selector", ".template-footer-container"]
-            ]
-        ]);
+$group->add(
+        $options->makeGroup(__("bearcms.themes.universal.options.Container"))
+                ->add([
+                    "id" => "footerContainerCSS",
+                    "type" => "css",
+                    "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
+                    "cssOutput" => [
+                        ["rule", ".template-footer-container", "box-sizing:border-box;"],
+                        ["selector", ".template-footer-container"]
+                    ]
+                ])
+);
 
-$windowGroup = $schema->addGroup(__("bearcms.themes.universal.options.Window"));
-$windowGroup
-        ->addOption("bodyCSS", "css", "", [
+$options->addGroup(__("bearcms.themes.universal.options.Window"))
+        ->add([
+            "id" => "bodyCSS",
+            "type" => "css",
             "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
             "cssOutput" => [
                 ["selector", "body"]
             ]
         ]);
 
-$pagesGroup = $schema->addGroup(__('bearcms.themes.universal.Pages'));
-$pagesGroup
+$options->addGroup(__('bearcms.themes.universal.Pages'))
         ->addPages();
 
-$schema->addCustomCSS();
+$options->addCustomCSS();
 
-return $schema;
+return $options;
+//
+//$options->addGroup('Elements')
+//        ->addElements('Content', '.parent-css');
+//
+//$options->addPages();
+//$options->addCustomCSS();
+//
+//$options->setDefaultValue('forumPostPageTextInputCSS', [
+//    "color" => "#000000"
+//]);
+//$options->setDefaultValues(['customCSS' => 'custom!!!!']);
