@@ -17,7 +17,7 @@ return [
     'headerDescriptionVisibility' => '1',
     'headerDescriptionCSS' => '{"color":"rgba(255,255,255,0.8)","font-family":"googlefonts:Open Sans","font-size":"15px"}',
     'headerDescriptionContainerCSS' => '{"margin-bottom":"30px","text-align":"left"}',
-    'headerContainerCSS' => '{"background-image":"url(addon:bearcms\/bearframework-addon:assets\/s3\/1.jpg)","background-position":"top center","background-repeat":"no-repeat","background-attachment":"scroll","background-size":"cover"}',
+    'headerContainerCSS' => '{"background-image":"url(addon:bearcms\/universal-theme-addon:assets\/s3\/1.jpg)","background-position":"top center","background-repeat":"no-repeat","background-attachment":"scroll","background-size":"cover"}',
     'navigationVisibility' => '1',
     'navigationPosition' => '2',
     'navigationCSS' => '{"max-width":"900px","margin-left":"auto","margin-right":"auto","padding-right":"15px","padding-left":"15px"}',
