@@ -29,7 +29,7 @@ return [
     'bearcms.themes.universal.options.Item' => 'Item',
     'bearcms.themes.universal.options.Subitem' => 'Subitem',
     'bearcms.themes.universal.options.Selected' => 'Selected',
-    'bearcms.themes.universal.options.Home page special block' => 'Home page special block',
+    'bearcms.themes.universal.options.Intro' => 'Intro (home page only)',
     'bearcms.themes.universal.options.Heading' => 'Heading',
     'bearcms.themes.universal.options.Image gallery' => 'Image gallery',
     'bearcms.themes.universal.options.Blog posts' => 'Blog posts',

@@ -9,6 +9,7 @@
 
 BearFramework\Addons::register('bearcms/universal-theme-addon', __DIR__, [
     'require' => [
-        'bearcms/bearframework-addon'
+        'bearcms/bearframework-addon',
+        'bearframework/localization-addon'
     ]
 ]);

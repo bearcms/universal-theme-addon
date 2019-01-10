@@ -29,7 +29,7 @@ return [
     'bearcms.themes.universal.options.Item' => 'Елемент',
     'bearcms.themes.universal.options.Subitem' => 'Поделемент',
     'bearcms.themes.universal.options.Selected' => 'Избран елемент',
-    'bearcms.themes.universal.options.Home page special block' => 'Блок в началната страница',
+    'bearcms.themes.universal.options.Intro' => 'Приветствено съдържание (в началната страница)',
     'bearcms.themes.universal.options.Heading' => 'Заглавие',
     'bearcms.themes.universal.options.Image gallery' => 'Албум със снимки',
     'bearcms.themes.universal.options.Blog posts' => 'Статии от блога',

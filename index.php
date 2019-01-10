@@ -26,7 +26,7 @@ $app->bearCMS->themes
             $context->assets
             ->addDir('assets');
 
-            $theme->version = '1.3';
+            $theme->version = '1.4';
 
             $theme->get = function(\BearCMS\Themes\Options $options) use ($context) {
                 $templateFilename = $context->dir . '/components/defaultTemplate.php';
@@ -59,11 +59,6 @@ $app->bearCMS->themes
             $theme->optionsSchema = function() use ($context) {
                 $schema = include $context->dir . '/options.php';
                 $values = require $context->dir . '/styles/1.php';
-//                foreach ($values as $id => $value) {
-//                    if (strpos($value, '{"') === 0) {
-//                        $values[$id] = json_decode($value, true);
-//                    }
-//                }
                 $schema->setValues($values);
                 return $schema;
             };
