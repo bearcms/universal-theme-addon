@@ -11,9 +11,7 @@ use BearFramework\App;
 
 $app = App::get();
 
-$schema = $app->bearCMS->themes->makeOptionsSchema();
-
-$headerGroup = $schema->addGroup(__("bearcms.themes.universal.options.Header"));
+$headerGroup = $options->addGroup(__("bearcms.themes.universal.options.Header"));
 $headerGroup->addOption("headerCSS", "css", "", [
     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
     "cssOutput" => [
@@ -35,7 +33,7 @@ $headerLogoGroup
 $headerLogoContainerGroup = $headerLogoGroup->addGroup(__("bearcms.themes.universal.options.Container"));
 $headerLogoContainerGroup
         ->addOption("headerLogoImageContainerCSS", "css", "", [
-            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
+            "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
             "cssOutput" => [
                 ["rule", ".template-header-logo-container", "box-sizing:border-box;"],
                 ["selector", ".template-header-logo-container"]
@@ -113,7 +111,7 @@ $headerContainerGroup
             ]
         ]);
 
-$navigationGroup = $schema->addGroup(__("bearcms.themes.universal.options.Navigation"));
+$navigationGroup = $options->addGroup(__("bearcms.themes.universal.options.Navigation"));
 $navigationGroup
         ->addOption("navigationVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
             "values" => [
@@ -197,7 +195,7 @@ $navigationContainerGroup
             ]
         ]);
 
-$homePageSpecialBlockGroup = $schema->addGroup(__("bearcms.themes.universal.options.Intro"), "This content block is shown only on the home page. It is useful for welcoming your visitors with images, videos or text.");
+$homePageSpecialBlockGroup = $options->addGroup(__("bearcms.themes.universal.options.Intro"), "This content block is shown only on the home page. It is useful for welcoming your visitors with images, videos or text.");
 $homePageSpecialBlockGroup
         ->addOption("homePageSpecialContentBlockVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
             "values" => [
@@ -232,7 +230,7 @@ $homePageSpecialBlockContainerGroup
             ]
         ]);
 
-$contentGroup = $schema->addGroup(__("bearcms.themes.universal.options.Content"));
+$contentGroup = $options->addGroup(__("bearcms.themes.universal.options.Content"));
 $contentGroup
         ->addOption("contentCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -255,7 +253,7 @@ $contentElementsContainerGroup
             ]
         ]);
 
-$footerGroup = $schema->addGroup(__("bearcms.themes.universal.options.Footer"));
+$footerGroup = $options->addGroup(__("bearcms.themes.universal.options.Footer"));
 $footerGroup
         ->addOption("footerVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
             "values" => [
@@ -291,7 +289,7 @@ $footerContainerGroup
             ]
         ]);
 
-$windowGroup = $schema->addGroup(__("bearcms.themes.universal.options.Window"));
+$windowGroup = $options->addGroup(__("bearcms.themes.universal.options.Window"));
 $windowGroup
         ->addOption("bodyCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
@@ -300,10 +298,8 @@ $windowGroup
             ]
         ]);
 
-$pagesGroup = $schema->addGroup(__('bearcms.themes.universal.Pages'));
+$pagesGroup = $options->addGroup(__('bearcms.themes.universal.Pages'));
 $pagesGroup
         ->addPages();
 
-$schema->addCustomCSS();
-
-return $schema;
+$options->addCustomCSS();

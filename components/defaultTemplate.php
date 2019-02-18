@@ -13,20 +13,20 @@ $app = App::get();
 $settings = $app->bearCMS->data->settings->get();
 $isHomePage = (string) $app->request->path === '/';
 
-$headerLogoImage = $options->getValue('headerLogoImage');
-$headerTitleVisibility = $options->getValue('headerTitleVisibility');
-$headerDescriptionVisibility = $options->getValue('headerDescriptionVisibility');
+$headerLogoImage = $customizations->getValue('headerLogoImage');
+$headerTitleVisibility = $customizations->getValue('headerTitleVisibility');
+$headerDescriptionVisibility = $customizations->getValue('headerDescriptionVisibility');
 
-$navigationVisibility = $options->getValue('navigationVisibility');
-$navigationPosition = $options->getValue('navigationPosition');
-$navigationItemCSS = $options->getValue('navigationItemCSS');
+$navigationVisibility = $customizations->getValue('navigationVisibility');
+$navigationPosition = $customizations->getValue('navigationPosition');
+$navigationItemCSS = $customizations->getValue('navigationItemCSS');
 $navigationItemCSS = strlen($navigationItemCSS) > 0 ? json_decode($navigationItemCSS, true) : [];
 $navigationItemColor = isset($navigationItemCSS['color']) ? $navigationItemCSS['color'] : '#ffffff';
 $navigationItemHoverColor = isset($navigationItemCSS['color:hover']) ? $navigationItemCSS['color:hover'] : $navigationItemColor;
 $navigationItemActiveColor = isset($navigationItemCSS['color:active']) ? $navigationItemCSS['color:active'] : $navigationItemHoverColor;
 
-$homePageSpecialContentBlockVisibility = $options->getValue('homePageSpecialContentBlockVisibility');
-$footerVisibility = $options->getValue('footerVisibility');
+$homePageSpecialContentBlockVisibility = $customizations->getValue('homePageSpecialContentBlockVisibility');
+$footerVisibility = $customizations->getValue('footerVisibility');
 ?><html>
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,minimal-ui">
