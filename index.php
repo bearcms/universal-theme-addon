@@ -26,7 +26,7 @@ $app->bearCMS->themes
         $context->assets
             ->addDir('assets');
 
-        $theme->version = '1.5';
+        $theme->version = '1.6';
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations) use ($app, $context) {
             $templateFilename = $context->dir . '/components/defaultTemplate.php';
@@ -56,8 +56,8 @@ $app->bearCMS->themes
             $manifest->media = [
                 [
                     'filename' => $context->dir . '/assets/1.jpg',
-                    'width' => 1024,
-                    'height' => 768,
+                    'width' => 1416,
+                    'height' => 1062,
                 ]
             ];
             if ($app->bearCMS->hasEventListeners('internalBearCMSUniversalThemeManifest')) {
@@ -85,13 +85,13 @@ $app->bearCMS->themes
 
         $theme->styles = function () use ($app, $context, $theme) {
             $styles = [];
-            for ($i = 1; $i <= 5; $i++) {
+            for ($i = 1; $i <= 13; $i++) {
                 $style = $theme->makeStyle();
                 $style->media = [
                     [
                         'filename' => $context->dir . '/assets/' . $i . '.jpg',
-                        'width' => 1024,
-                        'height' => 768,
+                        'width' => 1416,
+                        'height' => 1062,
                     ]
                 ];
                 $style->values = require $context->dir . '/styles/' . $i . '.php';
