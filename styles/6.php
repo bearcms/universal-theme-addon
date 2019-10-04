@@ -17,8 +17,9 @@ $image = '"border-top-left-radius":"2px","border-top-right-radius":"2px","border
 $button = '"color":"#ffffff","font-family":"Tahoma","font-size":"13px","line-height":"42px","padding-left":"15px","padding-right":"15px","height":"42px","background-color":"#333333","background-color:hover":"#222222","background-color:active":"#111111","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"';
 $date = '"color":"#888","font-family":"Tahoma","font-size":"12px","line-height":"200%"';
 $userImage = '"width":"50px","height":"50px","margin-right":"12px","border-top-left-radius":"2px","border-top-right-radius":"2px","border-bottom-left-radius":"2px","border-bottom-right-radius":"2px"';
+$separator = '"background-color":"#ccc","height":"2px","margin-top":"30px","margin-bottom":"30px","margin-left":"auto","margin-right":"auto"';
 
-$getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link, $image, $button, $date, $userImage) {
+$getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link, $image, $button, $date, $userImage, $separator) {
     if ($prefix === 'footerElements') {
         $textStyle = ',"color":"#ffffff"';
         $h1 .= $textStyle;
@@ -27,6 +28,7 @@ $getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link
         $text .= $textStyle;
         $link .= $textStyle . ',"color:hover":"#ffffff","color:active":"#ffffff"';
         $input .= ',"border-top":"","border-bottom":"","border-left":"","border-right":"","border-top:hover":"","border-bottom:hover":"","border-left:hover":"","border-right:hover":"","border-top:active":"","border-bottom:active":"","border-left:active":"","border-right:active":""';
+        $separator .= ',"background-color":"#333"';
     }
     return [
         $prefix . 'HeadingLargeCSS' => '{' . $h1 . '}',
@@ -60,6 +62,9 @@ $getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link
         $prefix . 'ForumPostsShowMoreButtonCSS' => '{' . $link . '}',
         $prefix . 'ForumPostsNewPostButtonCSS' => '{' . $link . '}',
         $prefix . 'ShareButtonCSS' => '{' . $button . '}',
+        $prefix . 'SeparatorLargeCSS' => '{' . $separator . ',"width":"80%"}',
+        $prefix . 'SeparatorMediumCSS' => '{' . $separator . ',"width":"60%"}',
+        $prefix . 'SeparatorSmallCSS' => '{' . $separator . ',"width":"40%"}',
     ];
 };
 
