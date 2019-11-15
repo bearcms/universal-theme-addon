@@ -14,7 +14,7 @@ $settings = $app->bearCMS->data->settings->get();
 
 $elementsLanguageSuffix = '';
 $homePath = '/';
-if ($languages[0] !== $language) {
+if (isset($languages[0]) && $languages[0] !== $language) {
     $elementsLanguageSuffix = '-' . $language;
     $homePath = '/' . $language . '/';
 }
