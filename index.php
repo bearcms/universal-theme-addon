@@ -28,13 +28,15 @@ $app->bearCMS->themes
 
         $theme->version = '1.7';
 
-        $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations) use ($app, $context) {
+        $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
+            $language = isset($cntx['language']) ? $cntx['language'] : null;
+            $languages = isset($cntx['languages']) ? $cntx['languages'] : [];
             $templateFilename = $context->dir . '/components/defaultTemplate.php';
-            $template = (static function ($__filename, $customizations) { // $customizations is used inside
+            $template = (static function ($__filename, $customizations, $language, $languages) { // $customizations is used inside
                 ob_start();
                 include $__filename;
                 return ob_get_clean();
-            })($templateFilename, $customizations);
+            })($templateFilename, $customizations, $language, $languages);
             if ($app->bearCMS->hasEventListeners('internalBearCMSUniversalThemeGet')) {
                 $eventDetails = new stdClass();
                 $eventDetails->template = $template;

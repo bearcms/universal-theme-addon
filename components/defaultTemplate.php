@@ -11,7 +11,15 @@ use BearFramework\App;
 $app = App::get();
 
 $settings = $app->bearCMS->data->settings->get();
-$isHomePage = (string) $app->request->path === '/';
+
+$elementsLanguageSuffix = '';
+$homePath = '/';
+if ($languages[0] !== $language) {
+    $elementsLanguageSuffix = '-' . $language;
+    $homePath = '/' . $language . '/';
+}
+
+$isHomePage = (string) $app->request->path === $homePath;
 
 $headerLogoImage = $customizations->getValue('headerLogoImage');
 $headerTitleVisibility = $customizations->getValue('headerTitleVisibility');
@@ -104,7 +112,7 @@ if ($navigationVisibility === '1') {
     $navigationContent .= '<nav class="template-navigation">';
     $navigationContent .= '<div>';
     $navigationContent .= '<input id="template-navigation-toggle-button" type="checkbox"/><label for="template-navigation-toggle-button">&nbsp;</label>';
-    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="w<680=>menuType=none,w>=680=>menuType=horizontal-down" /></div>';
+    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="w<680=>menuType=none,w>=680=>menuType=horizontal-down" /></div>';
     $navigationContent .= '</div>';
     $navigationContent .= '</nav>';
     $navigationContent .= '</div>';
@@ -118,14 +126,14 @@ echo '<div class="template-header-container">';
 echo '<header class="template-header">';
 
 if (!empty($headerLogoImage)) {
-    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->request->base) . '/" filename="' . htmlentities($headerLogoImage) . '"/>';
+    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImage) . '"/>';
     echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
 }
 if ($headerTitleVisibility === '1') {
-    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . $app->request->base . '">' . htmlspecialchars($settings->title) . '</a></div></div>';
+    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle($language)) . '</a></div></div>';
 }
 if ($headerDescriptionVisibility === '1') {
-    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->description) . '</div></div></div>';
+    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription($language)) . '</div></div></div>';
 }
 
 echo '</header>';
@@ -138,7 +146,7 @@ if ($navigationPosition === '2') {
 if ($isHomePage && $homePageSpecialContentBlockVisibility === '1') {
     echo '<div class="template-homepage-special-content-block-container">';
     echo '<section class="template-homepage-special-content-block">';
-    echo '<component src="bearcms-elements" editable="true" class="homepage-special-bearcms-elements" id="homepage-special"/>';
+    echo '<component src="bearcms-elements" editable="true" class="homepage-special-bearcms-elements" id="homepage-special' . $elementsLanguageSuffix . '"/>';
     echo '</section>';
     echo '</div>';
 }
@@ -152,7 +160,7 @@ echo '</div>';
 if ($footerVisibility === '1') {
     echo '<div class="template-footer-container">';
     echo '<footer class="template-footer">';
-    echo '<component src="bearcms-elements" editable="true" class="footer-bearcms-elements" id="footer"/>';
+    echo '<component src="bearcms-elements" editable="true" class="footer-bearcms-elements" id="footer' . $elementsLanguageSuffix . '"/>';
     echo '</footer>';
     echo '</div>';
 }
