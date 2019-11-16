@@ -130,10 +130,10 @@ if (!empty($headerLogoImage)) {
     echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
 }
 if ($headerTitleVisibility === '1') {
-    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle($language)) . '</a></div></div>';
+    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
 }
 if ($headerDescriptionVisibility === '1') {
-    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription($language)) . '</div></div></div>';
+    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
 }
 
 echo '</header>';
