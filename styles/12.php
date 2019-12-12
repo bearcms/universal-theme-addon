@@ -65,6 +65,8 @@ $getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link
         $prefix . 'SeparatorLargeCSS' => '{' . $separator . ',"width":"80%"}',
         $prefix . 'SeparatorMediumCSS' => '{' . $separator . ',"width":"60%"}',
         $prefix . 'SeparatorSmallCSS' => '{' . $separator . ',"width":"40%"}',
+        $prefix . 'SearchBoxInputCSS' => '{' . $input . '}',
+        $prefix . 'SearchBoxButtonCSS' => '{' . $button . ',"width":"46px","height":"100%","background-image":"url(addon:bearcms\/universal-theme-addon:assets\/search-icon.png)","background-position":"center center","background-repeat":"no-repeat","background-attachment":"scroll","background-size":"cover"}',
     ];
 };
 
