@@ -26,7 +26,7 @@ $app->bearCMS->themes
         $context->assets
             ->addDir('assets');
 
-        $theme->version = '1.9';
+        $theme->version = '1.10';
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
             $language = isset($cntx['language']) ? $cntx['language'] : null;
@@ -87,7 +87,7 @@ $app->bearCMS->themes
 
         $theme->styles = function () use ($app, $context, $theme) {
             $styles = [];
-            for ($i = 1; $i <= 16; $i++) {
+            for ($i = 1; $i <= 21; $i++) {
                 $style = $theme->makeStyle();
                 $style->media = [
                     [
