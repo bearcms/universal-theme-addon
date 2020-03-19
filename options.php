@@ -56,7 +56,7 @@ $headerTitleGroup
         ])
         ->addOption("headerTitleCSS", "css", "", [
             "cssOutput" => [
-                ["rule", ".template-header-title", "box-sizing:border-box;display:inline-block;text-decoration:none;"],
+                ["rule", ".template-header-title", "box-sizing:border-box;display:inline-block;text-decoration:none;word-break:break-all;"],
                 ["selector", ".template-header-title"]
             ]
         ]);
@@ -87,7 +87,7 @@ $headerDescriptionGroup
         ->addOption("headerDescriptionCSS", "css", "", [
             "cssTypes" => ["cssText", "cssTextShadow", "cssBackground", "cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
             "cssOutput" => [
-                ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;"],
+                ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;word-break:break-all;"],
                 ["selector", ".template-header-description"]
             ]
         ]);
@@ -149,8 +149,8 @@ $navigationItemGroup
         ->addOption("navigationItemCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
             "cssOutput" => [
-                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item", "box-sizing:border-box;display:inline-block;"],
-                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;"],
+                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item", "box-sizing:border-box;display:inline-block;max-width:100%;"],
+                ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;max-width:100%;overflow:hidden;"],
                 ["selector", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a"],
                 ["selector", ".template-navigation #template-navigation-toggle-button + label"],
                 ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"]
