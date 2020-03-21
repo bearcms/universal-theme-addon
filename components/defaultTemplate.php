@@ -112,7 +112,7 @@ if ($navigationVisibility === '1') {
     $navigationContent .= '<nav class="template-navigation">';
     $navigationContent .= '<div>';
     $navigationContent .= '<input id="template-navigation-toggle-button" type="checkbox"/><label for="template-navigation-toggle-button">&nbsp;</label>';
-    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="w<680=>menuType=none,w>=680=>menuType=horizontal-down" /></div>';
+    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="vw<680=>menuType=none,vw>=680=>menuType=horizontal-down" /></div>';
     $navigationContent .= '</div>';
     $navigationContent .= '</nav>';
     $navigationContent .= '</div>';
