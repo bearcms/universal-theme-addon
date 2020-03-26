@@ -61,6 +61,7 @@ if ($navigationVisibility === '1') {
 .template-navigation .bearcms-navigation-element-item-more > a:before{
     content: "...";
 }
+.template-navigation-content{font-size:0;}
 #template-navigation-toggle-button{
     display: none;
 }
