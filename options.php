@@ -56,7 +56,7 @@ $headerTitleGroup
     ])
     ->addOption("headerTitleCSS", "css", "", [
         "cssOutput" => [
-            ["rule", ".template-header-title", "box-sizing:border-box;display:inline-block;text-decoration:none;word-break:break-all;"],
+            ["rule", ".template-header-title", "box-sizing:border-box;display:inline-block;text-decoration:none;word-break:break-word;"],
             ["selector", ".template-header-title"]
         ]
     ]);
@@ -87,7 +87,7 @@ $headerDescriptionGroup
     ->addOption("headerDescriptionCSS", "css", "", [
         "cssTypes" => ["cssText", "cssTextShadow", "cssBackground", "cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
         "cssOutput" => [
-            ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;word-break:break-all;"],
+            ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;word-break:break-word;"],
             ["selector", ".template-header-description"]
         ]
     ]);
