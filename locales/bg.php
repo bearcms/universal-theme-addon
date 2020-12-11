@@ -10,7 +10,7 @@
 return [
     'bearcms.themes.universal.name' => 'Юнивърсъл',
     'bearcms.themes.universal.description' => 'Самото име подскaзва за универсалността на този дизайн. Изчистен, но и с много настройки, той ви позволява да създавате уебсайтове, които изглеждат страхотнo на големи екрани, таблети и мобилни телефони. Разполагате с различни стилове, които можете да използвате за лични, фирмени и фен уебсайтове. В началната страница можете да добавите уникална зона за съдържание, в която да поставите новини, промоции или друга информация, която да посрещне посетителите ви.',
-    'bearcms.themes.universal.options.Header' => 'Хедър',
+    'bearcms.themes.universal.options.Header' => 'Хедър (горна част)',
     'bearcms.themes.universal.options.Logo' => 'Лого',
     'bearcms.themes.universal.options.Container' => 'Контейнер',
     'bearcms.themes.universal.options.Description' => 'Описание',
@@ -40,7 +40,7 @@ return [
     'bearcms.themes.universal.options.Visibility' => 'Видимост',
     'bearcms.themes.universal.options.Visible' => 'Видим',
     'bearcms.themes.universal.options.Hidden' => 'Скрит',
-    'bearcms.themes.universal.options.Footer' => 'Футър',
+    'bearcms.themes.universal.options.Footer' => 'Футър (долна част)',
     'bearcms.themes.universal.options.Powered by link' => 'Връзка към използваната платформа',
     'bearcms.themes.universal.options.Window' => 'Прозорец',
     'bearcms.themes.universal.options.Blog post page' => 'Статия от блога',
