@@ -8,7 +8,6 @@
  */
 
 use BearFramework\App;
-use IvoPetkov\HTML5DOMDocument;
 
 $app = App::get();
 
@@ -27,19 +26,10 @@ $app->bearCMS->themes
         $context->assets
             ->addDir('assets');
 
-        $theme->version = '1.14';
+        $theme->version = '1.15';
 
-        $theme->initialize = function (\BearCMS\Themes\Theme\Customizations $customizations) use ($app) {
-            $app->bearCMS->addEventListener('internalMakePageResponse', function (\BearCMS\Internal\MakePageResponseEventDetails $eventDetails) use ($customizations) {
-                $html5Document = new HTML5DOMDocument();
-                $html5Document->loadHTML($eventDetails->response->content, HTML5DOMDocument::ALLOW_DUPLICATE_IDS);
-                $contentComponent = $html5Document->querySelector('bearcms-elements');
-                if ($contentComponent !== null) {
-                    $contentComponent->setAttribute('canStyle', 'true');
-                    $eventDetails->response->content = $html5Document->saveHTML();
-                }
-            });
-        };
+        $theme->canStyleElements = true;
+        $theme->useDefaultElementsCombinations = true;
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
             $language = isset($cntx['language']) ? $cntx['language'] : null;
