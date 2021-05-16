@@ -46,40 +46,40 @@ min-height: 100%;
 }
 *{outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}';
 if ($navigationVisibility === '1') {
-    echo '.template-navigation ul, .template-navigation li{
+    echo 'body .template-navigation ul, body .template-navigation li{
     list-style-type: none;
     list-style-position: outside;
 }
-.template-navigation ul{
+body .template-navigation ul{
     padding: 0;
     margin: 0;
     z-index: 10;
 }
-.template-navigation .bearcms-navigation-element-item-more{
+body .template-navigation .bearcms-navigation-element-item-more{
     cursor: pointer;
 }
-.template-navigation .bearcms-navigation-element-item-more > a:before{
+body .template-navigation .bearcms-navigation-element-item-more > a:before{
     content: "...";
 }
-.template-navigation-content{font-size:0;}
-#template-navigation-toggle-button{
+body .template-navigation-content{font-size:0;}
+body #template-navigation-toggle-button{
     display: none;
 }
-#template-navigation-toggle-button + label{
+body #template-navigation-toggle-button + label{
     display: none;
 }
 @media(max-width: 680px) {
-    .template-navigation{
+    body .template-navigation{
         display: block !important;
         padding: 0 !important;
     }
-    .template-navigation .bearcms-navigation-element-item{
+    body .template-navigation .bearcms-navigation-element-item{
         display: block !important;
     }
-    .template-navigation .bearcms-navigation-element-item-children{
+    body .template-navigation .bearcms-navigation-element-item-children{
         display: none !important;
     }
-    #template-navigation-toggle-button + label{
+    body #template-navigation-toggle-button + label{
         display: block;
         margin: 0 auto;
         cursor: pointer;
@@ -88,16 +88,16 @@ if ($navigationVisibility === '1') {
         background-position: center center;
         background-repeat: no-repeat;
     }
-    #template-navigation-toggle-button + label:hover{
+    body #template-navigation-toggle-button + label:hover{
         background-image: url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="' . $navigationItemHoverColor . '"><path d="M512 192l-96-96-160 160L96 96 0 192l256 256z"/></svg>') . '\');
     }
-    #template-navigation-toggle-button + label:active{
+    body #template-navigation-toggle-button + label:active{
         background-image: url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="' . $navigationItemActiveColor . '"><path d="M512 192l-96-96-160 160L96 96 0 192l256 256z"/></svg>') . '\');
     }
-    #template-navigation-toggle-button + label + div{
+    body #template-navigation-toggle-button + label + div{
         display: none;
     }
-    #template-navigation-toggle-button:checked + label + div{
+    body #template-navigation-toggle-button:checked + label + div{
         display: block;
         width: 100%;
         box-sizing: border-box;
@@ -106,7 +106,7 @@ if ($navigationVisibility === '1') {
 }
 echo '</style>';
 echo '</head>';
-echo '<body>';
+echo '<body class="template-body">';
 $navigationContent = '';
 if ($navigationVisibility === '1') {
     $navigationContent .= '<div class="template-navigation-container">';
