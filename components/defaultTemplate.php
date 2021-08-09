@@ -55,6 +55,33 @@ body .template-navigation ul{
     margin: 0;
     z-index: 10;
 }
+body .template-navigation .bearcms-navigation-element-item-search a{
+    min-width:20px;box-sizing:content-box !important;cursor:pointer;
+    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:20px 20px;
+}
+body .template-navigation .bearcms-navigation-element-item-search:hover a{
+    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
+}
+body .template-navigation .bearcms-navigation-element-item-search:active a{
+    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemActiveColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
+}
+body .template-navigation .bearcms-navigation-element-item-store-cart a{
+    min-width:20px;box-sizing:content-box !important;cursor:pointer;
+    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:20px 20px;
+}
+body .template-navigation .bearcms-navigation-element-item-store-cart:hover a{
+    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+}
+body .template-navigation .bearcms-navigation-element-item-store-cart:active a{
+    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+}
+
 body .template-navigation .bearcms-navigation-element-item-more{
     cursor: pointer;
 }
@@ -68,16 +95,28 @@ body #template-navigation-toggle-button{
 body #template-navigation-toggle-button + label{
     display: none;
 }
+body .bearcms-navigation-toggle-item-search{
+    display:none;
+}
+body .bearcms-navigation-toggle-item-store-cart{
+    display:none;
+}
 @media(max-width: 680px) {
     body .template-navigation{
         display: block !important;
         padding: 0 !important;
     }
     body .template-navigation .bearcms-navigation-element-item{
-        display: block !important;
+        display:block !important;
     }
     body .template-navigation .bearcms-navigation-element-item-children{
-        display: none !important;
+        display:none !important;
+    }
+    body .template-navigation .bearcms-navigation-element-item.bearcms-navigation-element-item-search{
+        display:none !important;
+    }
+    body .template-navigation .bearcms-navigation-element-item.bearcms-navigation-element-item-store-cart{
+        display:none !important;
     }
     body #template-navigation-toggle-button + label{
         display: block;
@@ -102,9 +141,47 @@ body #template-navigation-toggle-button + label{
         width: 100%;
         box-sizing: border-box;
     }
+    body .bearcms-navigation-toggle-item-search{
+        display:block;
+        width:20px;float:right;box-sizing:content-box;cursor:pointer;
+        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
+        background-position:center center;
+        background-repeat:no-repeat;
+        background-size:20px 20px;
+    }
+    body .bearcms-navigation-toggle-item-search:hover{
+        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
+    }
+    body .bearcms-navigation-toggle-item-search:active{
+        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemActiveColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
+    }
+    body .bearcms-navigation-toggle-item-store-cart{
+        display:block;
+        width:20px;float:right;box-sizing:content-box;cursor:pointer;
+        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+        background-position:center center;
+        background-repeat:no-repeat;
+        background-size:20px 20px;
+    }
+    body .bearcms-navigation-toggle-item-store-cart:hover{
+        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+    }
+    body .bearcms-navigation-toggle-item-store-cart:active{
+        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+    }
 }';
 }
 echo '</style>';
+echo '<script>';
+echo 'var f=function(){
+var t=document.querySelector(\'.template-navigation .bearcms-navigation-toggle-item-search\');
+var tc=document.querySelector(\'.template-navigation .bearcms-navigation-element-item-search\');
+if(t!==null){tc!==null?t.style.removeProperty(\'display\'):t.style.setProperty(\'display\',\'none\');}
+var t=document.querySelector(\'.template-navigation .bearcms-navigation-toggle-item-store-cart\');
+var tc=document.querySelector(\'.template-navigation .bearcms-navigation-element-item-store-cart\');
+if(t!==null){tc!==null?t.style.removeProperty(\'display\'):t.style.setProperty(\'display\',\'none\');}
+};f();window.addEventListener(\'resize\',f);window.addEventListener(\'load\',f);setInterval(f,500);';
+echo '</script>';
 echo '</head>';
 echo '<body class="template-body">';
 $navigationContent = '';
@@ -112,6 +189,8 @@ if ($navigationVisibility === '1') {
     $navigationContent .= '<div class="template-navigation-container">';
     $navigationContent .= '<nav class="template-navigation">';
     $navigationContent .= '<div>';
+    $navigationContent .= '<div class="bearcms-navigation-toggle-item-store-cart" style="display:none;" onclick="this.parentNode.querySelector(\'.bearcms-navigation-element-item-store-cart\').firstChild.click();"></div>';
+    $navigationContent .= '<div class="bearcms-navigation-toggle-item-search" style="display:none;" onclick="this.parentNode.querySelector(\'.bearcms-navigation-element-item-search\').firstChild.click();"></div>';
     $navigationContent .= '<input id="template-navigation-toggle-button" type="checkbox"/><label for="template-navigation-toggle-button">&nbsp;</label>';
     $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="vw<680=>menuType=none,vw>=680=>menuType=horizontal-down" /></div>';
     $navigationContent .= '</div>';

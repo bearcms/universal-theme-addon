@@ -99,4 +99,3 @@ return [
     'bearcms.themes.universal.options.blogPosts.Show more button' => 'Show more button',
     'bearcms.themes.universal.options.blogPosts.Container' => 'Container',
 ];
-

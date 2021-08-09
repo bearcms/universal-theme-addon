@@ -153,7 +153,9 @@ $navigationItemGroup
             ["rule", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;max-width:100%;overflow:hidden;"],
             ["selector", ".template-navigation .template-navigation-content > .bearcms-navigation-element-item > a"],
             ["selector", ".template-navigation #template-navigation-toggle-button + label"],
-            ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"]
+            ["selector", ".template-navigation #template-navigation-toggle-button:checked + label"],
+            ["selector", ".template-navigation .bearcms-navigation-toggle-item-search"],
+            ["selector", ".template-navigation .bearcms-navigation-toggle-item-store-cart"]
         ]
     ]);
 $navigationItemSelectedGroup = $navigationItemGroup->addGroup(__("bearcms.themes.universal.options.Selected"));

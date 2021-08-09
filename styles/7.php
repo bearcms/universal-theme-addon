@@ -78,6 +78,12 @@ $getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link
         $prefix . 'SeparatorSmallCSS' => '{' . $separator . ',"width":"40%"}',
         $prefix . 'SearchBoxInputCSS' => '{' . $input . '}',
         $prefix . 'SearchBoxButtonCSS' => '{' . $button . ',"width":"46px","height":"100%","background-image":"url(addon:bearcms\/universal-theme-addon:assets\/search-icon.png)","background-position":"center center","background-repeat":"no-repeat","background-attachment":"scroll","background-size":"cover"}',
+        $prefix . 'StoreItemsItemNameCSS' => '{' . $link . ',"font-size":"22px"}',
+        $prefix . 'StoreItemsItemDescriptionCSS' => '{' . $text . '}',
+        $prefix . 'StoreItemsItemDescriptionContainerCSS' => '{"padding-top":"5px"}',
+        $prefix . 'StoreItemsItemPriceCSS' => '{' . $text . '}',
+        $prefix . 'StoreItemsItemPriceOriginalCSS' => '{' . $text . ',"text-decoration":"line-through","font-size":"12px"}',
+        $prefix . 'StoreItemsItemPriceContainerCSS' => '{"padding-top":"5px"}',
     ];
 };
 
@@ -130,6 +136,12 @@ $result = [
     'forumPostPageReplyTextLinksCSS' => '{' . $link . '}',
     'forumPostPageTextInputCSS' => '{' . $input . ',"height":"200px"}',
     'forumPostPageSendButtonCSS' => '{' . $button . ',"margin-top":"10px"}',
+    'storeItemPageNameCSS' => '{' . $h1 . '}',
+    'storeItemPagePriceCSS' => '{' . $text . '}',
+    'storeItemPagePriceOriginalCSS' => '{' . $text . ',"text-decoration":"line-through","font-size":"12px"}',
+    'storeItemPagePriceContainerCSS' => '{"padding-top":"7px"}',
+    'storeItemPageBuyButtonCSS' => '{' . $button . '}',
+    'storeItemPageDescriptionCSS' => '{' . $text . '}'
 ];
 $result = array_merge($result, $getElementsStyles('homePageSpecialContentBlockElements'));
 $result = array_merge($result, $getElementsStyles('contentElements'));
