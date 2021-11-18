@@ -182,6 +182,9 @@ var tc=document.querySelector(\'.template-navigation .bearcms-navigation-element
 if(t!==null){tc!==null?t.style.removeProperty(\'display\'):t.style.setProperty(\'display\',\'none\');}
 };f();window.addEventListener(\'resize\',f);window.addEventListener(\'load\',f);setInterval(f,500);';
 echo '</script>';
+if ($navigationVisibility === '1') {
+    echo '<link rel="client-packages-embed" name="responsiveAttributes">';
+}
 echo '</head>';
 echo '<body class="template-body">';
 $navigationContent = '';
