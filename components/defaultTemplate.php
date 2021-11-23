@@ -21,7 +21,7 @@ if (isset($languages[0]) && $languages[0] !== $language) {
 
 $isHomePage = (string) $app->request->path === $homePath;
 
-$headerLogoImage = $customizations->getValue('headerLogoImage');
+$headerLogoImage = (string)$customizations->getValue('headerLogoImage');
 $headerTitleVisibility = $customizations->getValue('headerTitleVisibility');
 $headerDescriptionVisibility = $customizations->getValue('headerDescriptionVisibility');
 
@@ -208,8 +208,9 @@ if ($navigationPosition === '1') {
 echo '<div class="template-header-container">';
 echo '<header class="template-header">';
 
-if (!empty($headerLogoImage)) {
-    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImage) . '"/>';
+if (isset($headerLogoImage[0])) {
+    $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
+    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities($headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities($headerLogoImageDetails['height']) . '"/>';
     echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
 }
 if ($headerTitleVisibility === '1') {
