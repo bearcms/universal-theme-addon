@@ -1,7 +1,11 @@
 {
     "name": "bearcms/universal-theme-addon",
     "description": "Universal Theme for Bear CMS",
-    "keywords": ["universal", "theme", "Bear CMS"],
+    "keywords": [
+        "universal",
+        "theme",
+        "Bear CMS"
+    ],
     "homepage": "https://github.com/bearcms/universal-theme-addon",
     "license": "MIT",
     "authors": [
@@ -19,7 +23,12 @@
         "ivopetkov/client-packages-bearframework-addon": "1.*",
         "ivopetkov/responsive-attributes-bearframework-addon": "1.*"
     },
+    "require-dev": {
+        "bearcms/addon-tests": "1.*"
+    },
     "autoload": {
-        "files": ["autoload.php"]
+        "files": [
+            "autoload.php"
+        ]
     }
 }
