@@ -22,12 +22,12 @@ if (isset($languages[0]) && $languages[0] !== $language) {
 $isHomePage = (string) $app->request->path === $homePath;
 
 $headerLogoImage = (string)$customizations->getValue('headerLogoImage');
-$headerTitleVisibility = $customizations->getValue('headerTitleVisibility');
-$headerDescriptionVisibility = $customizations->getValue('headerDescriptionVisibility');
+$headerTitleVisibility = (string)$customizations->getValue('headerTitleVisibility');
+$headerDescriptionVisibility = (string)$customizations->getValue('headerDescriptionVisibility');
 
-$navigationVisibility = $customizations->getValue('navigationVisibility');
-$navigationPosition = $customizations->getValue('navigationPosition');
-$navigationItemCSS = $customizations->getValue('navigationItemCSS');
+$navigationVisibility = (string)$customizations->getValue('navigationVisibility');
+$navigationPosition = (string)$customizations->getValue('navigationPosition');
+$navigationItemCSS = (string)$customizations->getValue('navigationItemCSS');
 $navigationItemCSS = strlen($navigationItemCSS) > 0 ? json_decode($navigationItemCSS, true) : [];
 $navigationItemColor = isset($navigationItemCSS['color']) ? $navigationItemCSS['color'] : '#ffffff';
 $navigationItemHoverColor = isset($navigationItemCSS['color:hover']) ? $navigationItemCSS['color:hover'] : $navigationItemColor;
