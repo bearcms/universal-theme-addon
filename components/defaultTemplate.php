@@ -195,7 +195,7 @@ if ($navigationVisibility === '1') {
     $navigationContent .= '<div class="bearcms-navigation-toggle-item-store-cart" style="display:none;" onclick="this.parentNode.querySelector(\'.bearcms-navigation-element-item-store-cart\').firstChild.click();"></div>';
     $navigationContent .= '<div class="bearcms-navigation-toggle-item-search" style="display:none;" onclick="this.parentNode.querySelector(\'.bearcms-navigation-element-item-search\').firstChild.click();"></div>';
     $navigationContent .= '<input id="template-navigation-toggle-button" type="checkbox"/><label for="template-navigation-toggle-button">&nbsp;</label>';
-    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="vw<680=>menuType=none,vw>=680=>menuType=horizontal-down" /></div>';
+    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="vw<680=>menuType=none,vw>=680=>menuType=horizontal-down" allowSearchButtonOption="true" allowStoreCartButtonOption="true"/></div>';
     $navigationContent .= '</div>';
     $navigationContent .= '</nav>';
     $navigationContent .= '</div>';
