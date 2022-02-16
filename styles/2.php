@@ -116,10 +116,14 @@ $result = [
     'forumPostPageTextInputCSS' => '{' . $input . ',"height":"200px"}',
     'forumPostPageSendButtonCSS' => '{' . $button . ',"margin-top":"10px"}',
     'storeItemPageNameCSS' => '{' . $h1 . '}',
+    'storeItemPageOptionSelectCSS' => '{' . $input . ',"width":""}',
+    'storeItemPageOptionLabelCSS' => '{' . $text . '}',
+    'storeItemPageOptionContainerCSS' => '{"padding-top":"15px"}',
     'storeItemPagePriceCSS' => '{' . $text . '}',
     'storeItemPagePriceOriginalCSS' => '{' . $text . ',"text-decoration":"line-through","font-size":"12px"}',
-    'storeItemPagePriceContainerCSS' => '{"padding-top":"7px"}',
+    'storeItemPagePriceContainerCSS' => '{"padding-top":"15px"}',
     'storeItemPageBuyButtonCSS' => '{' . $button . '}',
+    'storeItemPageBuyButtonContainerCSS' => '{"padding-top":"15px"}',
     'storeItemPageDescriptionCSS' => '{' . $text . '}'
 ];
 $result = array_merge($result, $getElementsStyles('homePageSpecialContentBlockElements'));
