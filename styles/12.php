@@ -30,6 +30,14 @@ $getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link
         $input .= ',"border-top":"","border-bottom":"","border-left":"","border-right":"","border-top:hover":"","border-bottom:hover":"","border-left:hover":"","border-right:hover":"","border-top:active":"","border-bottom:active":"","border-left:active":"","border-right:active":""';
         $separator .= ',"background-color":"#666"';
     }
+    $formFieldInput = $input;
+    $formFieldLabel = $text;
+    $formFieldHint = $text . ',"font-size":"12px","padding-bottom":"3px"';
+    $formFieldContainer = '"padding-bottom":"15px"';
+    $formFieldListOptionButton = $input . ',"width":"40px","height":"40px","background-position":"center center","background-repeat":"no-repeat","background-attachment":"scroll","background-size":"cover"';
+    $formFieldListOptionText = $text . ',"padding-left":"15px","padding-top":"8px"';
+    $formFieldListOptionTextbox = $input . ',"height":"40px","line-height":"38px","width":"250px","margin-left":"10px"';
+    $formFieldListOptionContainer = '"margin-bottom":"5px"';
     return [
         $prefix . 'HeadingLargeCSS' => '{' . $h1 . '}',
         $prefix . 'HeadingMediumCSS' => '{' . $h2 . '}',
@@ -74,6 +82,35 @@ $getElementsStyles = function ($prefix) use ($text, $h1, $h2, $h3, $input, $link
         $prefix . 'StoreItemsItemPriceCSS' => '{' . $text . '}',
         $prefix . 'StoreItemsItemPriceOriginalCSS' => '{' . $text . ',"text-decoration":"line-through","font-size":"12px"}',
         $prefix . 'StoreItemsItemPriceContainerCSS' => '{"padding-top":"5px"}',
+        $prefix . 'FormFieldTextCSS' => '{' . $formFieldInput . '}',
+        $prefix . 'FormFieldTextLabelCSS' => '{' . $formFieldLabel . '}',
+        $prefix . 'FormFieldTextHintCSS' => '{' . $formFieldHint . '}',
+        $prefix . 'FormFieldTextContainerCSS' => '{' . $formFieldContainer . '}',
+        $prefix . 'FormFieldTextareaCSS' => '{' . $formFieldInput . ',"height":"140px"}',
+        $prefix . 'FormFieldTextareaLabelCSS' => '{' . $formFieldLabel . '}',
+        $prefix . 'FormFieldTextareaHintCSS' => '{' . $formFieldHint . '}',
+        $prefix . 'FormFieldTextareaContainerCSS' => '{' . $formFieldContainer . '}',
+        $prefix . 'FormFieldOpenedListSingleSelectLabelCSS' => '{' . $formFieldLabel . '}',
+        $prefix . 'FormFieldOpenedListSingleSelectHintCSS' => '{' . $formFieldHint . '}',
+        $prefix . 'FormFieldOpenedListSingleSelectOptionButtonCSS' => '{' . $formFieldListOptionButton . ',"border-top-left-radius":"50%","border-top-right-radius":"50%","border-bottom-left-radius":"50%","border-bottom-right-radius":"50%"}',
+        $prefix . 'FormFieldOpenedListSingleSelectOptionButtonCheckedCSS' => '{"background-image":"url(addon:bearcms\/universal-theme-addon:assets\/radio-icon-111.svg)","background-size":"30px 30px"}',
+        $prefix . 'FormFieldOpenedListSingleSelectOptionTextCSS' => '{' . $formFieldListOptionText . '}',
+        $prefix . 'FormFieldOpenedListSingleSelectOptionTextboxCSS' => '{' . $formFieldListOptionTextbox . '}',
+        $prefix . 'FormFieldOpenedListSingleSelectOptionContainerCSS' => '{' . $formFieldListOptionContainer . '}',
+        $prefix . 'FormFieldOpenedListSingleSelectContainerCSS' => '{' . $formFieldContainer . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectLabelCSS' => '{' . $formFieldLabel . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectHintCSS' => '{' . $formFieldHint . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectOptionButtonCSS' => '{' . $formFieldListOptionButton . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectOptionButtonCheckedCSS' => '{"background-image":"url(addon:bearcms\/universal-theme-addon:assets\/checkbox-icon-111.svg)","background-size":"18px 18px"}',
+        $prefix . 'FormFieldOpenedListMultiSelectOptionTextCSS' => '{' . $formFieldListOptionText . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectOptionTextboxCSS' => '{' . $formFieldListOptionTextbox . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectOptionContainerCSS' => '{' . $formFieldListOptionContainer . '}',
+        $prefix . 'FormFieldOpenedListMultiSelectContainerCSS' => '{' . $formFieldContainer . '}',
+        $prefix . 'FormFieldClosedListCSS' => '{' . $formFieldInput . '}',
+        $prefix . 'FormFieldClosedListLabelCSS' => '{' . $formFieldLabel . '}',
+        $prefix . 'FormFieldClosedListHintCSS' => '{' . $formFieldHint . '}',
+        $prefix . 'FormFieldClosedListContainerCSS' => '{' . $formFieldContainer . '}',
+        $prefix . 'FormSubmitButtonCSS' => '{' . $button . '}',
     ];
 };
 
