@@ -9,6 +9,7 @@
 use BearFramework\App;
 
 $app = App::get();
+$context = $app->contexts->get(__DIR__);
 
 $settings = $app->bearCMS->data->settings->get();
 
@@ -21,213 +22,211 @@ if (isset($languages[0]) && $languages[0] !== $language) {
 
 $isHomePage = (string) $app->request->path === $homePath;
 
+$headerLayout = (string)$customizations->getValue('headerLayout');
 $headerLogoImage = (string)$customizations->getValue('headerLogoImage');
-$headerTitleVisibility = (string)$customizations->getValue('headerTitleVisibility');
-$headerDescriptionVisibility = (string)$customizations->getValue('headerDescriptionVisibility');
+$headerTitleIsVisible = (string)$customizations->getValue('headerTitleVisibility') === '1';
+$headerDescriptionIsVisible = (string)$customizations->getValue('headerDescriptionVisibility') === '1';
+$navigationIsVisible = (string)$customizations->getValue('navigationVisibility') === '1';
+$navigationSearchButtonVisibility = (string)$customizations->getValue('navigationSearchButtonVisibility');
+if ($navigationSearchButtonVisibility === 'auto') {
+    $navigationSearchButtonIsVisible = $app->bearCMS->addons->exists('bearcms/search-box-element-addon') && isset($app->searchBoxElement) && $app->searchBoxElement->isEnabled();
+} else {
+    $navigationSearchButtonIsVisible = $navigationSearchButtonVisibility === '1';
+}
+$navigationStoreCartButtonVisibility = (string)$customizations->getValue('navigationStoreCartButtonVisibility');
+if ($navigationStoreCartButtonVisibility === 'auto') {
+    $navigationStoreCartButtonIsVisible = $app->bearCMS->addons->exists('bearcms/store-addon') && isset($app->store) && $app->store->isEnabled();
+} else {
+    $navigationStoreCartButtonIsVisible = $navigationStoreCartButtonVisibility === '1';
+}
+$homePageSpecialContentBlockIsVisible = $customizations->getValue('homePageSpecialContentBlockVisibility') === '1';
+$footerIsVisible = $customizations->getValue('footerVisibility') === '1';
 
-$navigationVisibility = (string)$customizations->getValue('navigationVisibility');
-$navigationPosition = (string)$customizations->getValue('navigationPosition');
-$navigationItemCSS = (string)$customizations->getValue('navigationItemCSS');
-$navigationItemCSS = strlen($navigationItemCSS) > 0 ? json_decode($navigationItemCSS, true) : [];
-$navigationItemColor = isset($navigationItemCSS['color']) ? $navigationItemCSS['color'] : '#ffffff';
-$navigationItemHoverColor = isset($navigationItemCSS['color:hover']) ? $navigationItemCSS['color:hover'] : $navigationItemColor;
-$navigationItemActiveColor = isset($navigationItemCSS['color:active']) ? $navigationItemCSS['color:active'] : $navigationItemHoverColor;
-
-$homePageSpecialContentBlockVisibility = $customizations->getValue('homePageSpecialContentBlockVisibility');
-$footerVisibility = $customizations->getValue('footerVisibility');
 echo '<html>';
 echo '<head>';
 echo '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,minimal-ui">';
+
 echo '<style>';
-echo 'html, body{
-padding: 0;
-margin: 0;
-min-height: 100%;
-}
-*{outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}';
-if ($navigationVisibility === '1') {
-    echo 'body .template-navigation ul, body .template-navigation li{
-    list-style-type: none;
-    list-style-position: outside;
-}
-body .template-navigation ul{
-    padding: 0;
-    margin: 0;
-    z-index: 10;
-}
-body .template-navigation .bearcms-navigation-element-item-search a{
-    min-width:20px;box-sizing:content-box !important;cursor:pointer;
-    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
-    background-position:center center;
-    background-repeat:no-repeat;
-    background-size:20px 20px;
-}
-body .template-navigation .bearcms-navigation-element-item-search:hover a{
-    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
-}
-body .template-navigation .bearcms-navigation-element-item-search:active a{
-    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemActiveColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
-}
-body .template-navigation .bearcms-navigation-element-item-store-cart a{
-    min-width:20px;box-sizing:content-box !important;cursor:pointer;
-    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
-    background-position:center center;
-    background-repeat:no-repeat;
-    background-size:20px 20px;
-}
-body .template-navigation .bearcms-navigation-element-item-store-cart:hover a{
-    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
-}
-body .template-navigation .bearcms-navigation-element-item-store-cart:active a{
-    background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
+
+echo 'html,body{padding:0;margin:0;min-height:100%;}';
+echo '*{outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);}';
+
+if ($headerLayout === 'horizontal') {
+    echo 'body .template-header{display:flex;}';
+    echo 'body .template-header > *{flex:0 0 auto;}';
 }
 
-body .template-navigation .bearcms-navigation-element-item-more{
-    cursor: pointer;
+if ($navigationIsVisible) {
+    echo 'body .template-navigation ul,body .template-navigation li{list-style-type:none;list-style-position:outside;padding:0;margin:0;}';
+    echo 'body .bearcms-navigation-button-search{display:inline-block;box-sizing:content-box;cursor:pointer;}';
+    echo 'body .bearcms-navigation-button-store-cart{display:inline-block;box-sizing:content-box;cursor:pointer;}';
+    echo 'body .template-navigation{font-size:0;}';
+    echo 'body .template-navigation .bearcms-navigation-element-item-more{cursor:pointer;}';
+    echo 'body .template-navigation .bearcms-navigation-element-item-more > a:before{content:"...";}';
+
+    echo 'body .template-navigation-container[data-nav-type="horizontal"] .template-navigation{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="horizontal"] .template-navigation-additional-buttons{flex:0 0 auto;}';
+    echo 'body .template-navigation-container[data-nav-type="horizontal"] .template-navigation-items{flex:0 1 auto;min-width:0;}';
+    echo 'body .template-navigation-container[data-nav-type="horizontal"] .bearcms-navigation-element-item-children{z-index:10;}';
+
+    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-button-toggle{cursor:pointer;}';
+    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-additional-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-items-container{box-sizing:border-box;position:absolute;z-index:10;}';
+    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-items-container:not([data-bearcms-template-visibility="visible"]){display:none;}';
+    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .bearcms-navigation-element-item-children{display:none !important;}';
+
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-button-toggle{cursor:pointer;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-additional-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay{position:fixed;top:0;left:0;z-index:10;width:100%;height:100%;overscroll-behavior:contain;overflow:hidden;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay .template-navigation-items-background{position:fixed;top:0;left:0;width:100vw;height:100vh;overflow:hidden;opacity:1;transition:opacity 500ms;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay .template-navigation-items-container{position:fixed;top:0;transform:translateX(0);transition:transform 500ms,box-shadow 500ms;box-sizing:border-box;overflow:auto;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-left"] .template-navigation-items-overlay .template-navigation-items-container{left:0;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-right"] .template-navigation-items-overlay .template-navigation-items-container{right:0;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]){pointer-events:none;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-background{opacity:0;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-left"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-container{transform:translateX(-100%);box-shadow:unset;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-right"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-container{transform:translateX(100%);box-shadow:unset;}';
+    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .bearcms-navigation-element-item-children{display:none !important;}';
+
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-button-toggle{cursor:pointer;}';
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-additional-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-items-container{box-sizing:border-box;max-width:100vw;}';
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .bearcms-navigation-element-item{display:block !important;}';
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-items-container:not([data-bearcms-template-visibility="visible"]){display:none;}';
+    echo 'body .template-navigation-container[data-nav-type="button-block"] .bearcms-navigation-element-item-children{display:none !important;}';
+
+    if ($headerLayout === 'horizontal') {
+        echo 'body .template-navigation-container{flex:1 1 auto;min-width:0;}';
+    }
+    if ($headerLayout === 'navHoverOverHeader' || $headerLayout === 'navHoverOverHeaderContainer') {
+        echo 'body .template-navigation-container{position:absolute;z-index:5;}';
+    } else {
+        echo 'body .template-navigation-container{position:relative;}'; // for the buttonDropDown
+    }
+
+    $navigationContainerAttributes = '';
+    $navigationContainerResponsiveAttributes = '';
+
+    $addNavigationContainerResponsiveAttributes = function (string $name, callable $converter) use ($customizations, &$navigationContainerResponsiveAttributes) {
+        $details = $customizations->getValueDetails($name, ['responsiveAttributes' => $converter]);
+        if ($details['responsiveAttributes'] !== '') {
+            $navigationContainerResponsiveAttributes .= ',' . $details['responsiveAttributes'];
+        }
+    };
+    $addNavigationContainerResponsiveAttributes('navigationType', function ($value) {
+        if ($value === 'horizontal') {
+            return ['data-nav-type' => 'horizontal'];
+        } elseif ($value === 'buttonBlock') {
+            return ['data-nav-type' => 'button-block'];
+        } elseif ($value === 'buttonDropDown') {
+            return ['data-nav-type' => 'button-drop-down'];
+        } elseif ($value === 'buttonOverlay') {
+            return ['data-nav-type' => 'button-overlay'];
+        }
+    });
+
+    $addButtonsLayoutAttributes = function (string $name, string $type) use ($customizations, &$navigationContainerAttributes) {
+        $value = (string)$customizations->getValue($name);
+        if ($value !== '') {
+            $navigationContainerAttributes .= ' data-nav-layout-' . $type . '="' . htmlentities($value === 'toggleLeft' ? 'toggle-left' : 'toggle-right') . '"';
+        }
+    };
+    $addButtonsLayoutAttributes('navigationTypeButtonBlockButtonsLayout', 'button-block');
+    $addButtonsLayoutAttributes('navigationTypeButtonDropDownButtonsLayout', 'button-drop-down');
+    $addButtonsLayoutAttributes('navigationTypeButtonOverlayButtonsLayout', 'button-overlay');
+
+    if ($navigationContainerResponsiveAttributes !== '') {
+        $navigationContainerAttributes .= ' data-responsive-attributes="' . htmlentities(trim($navigationContainerResponsiveAttributes, ',')) . '"';
+    }
 }
-body .template-navigation .bearcms-navigation-element-item-more > a:before{
-    content: "...";
-}
-body .template-navigation-content{font-size:0;}
-body #template-navigation-toggle-button{
-    display: none;
-}
-body #template-navigation-toggle-button + label{
-    display: none;
-}
-body .bearcms-navigation-toggle-item-search{
-    display:none;
-}
-body .bearcms-navigation-toggle-item-store-cart{
-    display:none;
-}
-@media(max-width: 680px) {
-    body .template-navigation{
-        display: block !important;
-        padding: 0 !important;
-    }
-    body .template-navigation .bearcms-navigation-element-item{
-        display:block !important;
-    }
-    body .template-navigation .bearcms-navigation-element-item-children{
-        display:none !important;
-    }
-    body .template-navigation .bearcms-navigation-element-item.bearcms-navigation-element-item-search{
-        display:none !important;
-    }
-    body .template-navigation .bearcms-navigation-element-item.bearcms-navigation-element-item-store-cart{
-        display:none !important;
-    }
-    body #template-navigation-toggle-button + label{
-        display: block;
-        margin: 0 auto;
-        cursor: pointer;
-        background-image: url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="' . $navigationItemColor . '"><path d="M512 192l-96-96-160 160L96 96 0 192l256 256z"/></svg>') . '\');
-        background-size: auto 50%;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-    body #template-navigation-toggle-button + label:hover{
-        background-image: url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="' . $navigationItemHoverColor . '"><path d="M512 192l-96-96-160 160L96 96 0 192l256 256z"/></svg>') . '\');
-    }
-    body #template-navigation-toggle-button + label:active{
-        background-image: url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="' . $navigationItemActiveColor . '"><path d="M512 192l-96-96-160 160L96 96 0 192l256 256z"/></svg>') . '\');
-    }
-    body #template-navigation-toggle-button + label + div{
-        display: none;
-    }
-    body #template-navigation-toggle-button:checked + label + div{
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    body .bearcms-navigation-toggle-item-search{
-        display:block;
-        width:20px;float:right;box-sizing:content-box;cursor:pointer;
-        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
-        background-position:center center;
-        background-repeat:no-repeat;
-        background-size:20px 20px;
-    }
-    body .bearcms-navigation-toggle-item-search:hover{
-        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
-    }
-    body .bearcms-navigation-toggle-item-search:active{
-        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemActiveColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M14.412112 14.412112L20 20"/><circle cx="10" cy="10" r="6"/></svg>') . '\');
-    }
-    body .bearcms-navigation-toggle-item-store-cart{
-        display:block;
-        width:20px;float:right;box-sizing:content-box;cursor:pointer;
-        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
-        background-position:center center;
-        background-repeat:no-repeat;
-        background-size:20px 20px;
-    }
-    body .bearcms-navigation-toggle-item-store-cart:hover{
-        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemHoverColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
-    }
-    body .bearcms-navigation-toggle-item-store-cart:active{
-        background-image:url(\'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" stroke="' . $navigationItemColor . '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="19" r="1"/><circle cx="18" cy="19" r="1"/><path d="M6 6H3"/></svg>') . '\');
-    }
-}';
-}
+
 echo '</style>';
-echo '<script>';
-echo 'var f=function(){
-var t=document.querySelector(\'.template-navigation .bearcms-navigation-toggle-item-search\');
-var tc=document.querySelector(\'.template-navigation .bearcms-navigation-element-item-search\');
-if(t!==null){tc!==null?t.style.removeProperty(\'display\'):t.style.setProperty(\'display\',\'none\');}
-var t=document.querySelector(\'.template-navigation .bearcms-navigation-toggle-item-store-cart\');
-var tc=document.querySelector(\'.template-navigation .bearcms-navigation-element-item-store-cart\');
-if(t!==null){tc!==null?t.style.removeProperty(\'display\'):t.style.setProperty(\'display\',\'none\');}
-};f();window.addEventListener(\'resize\',f);window.addEventListener(\'load\',f);setInterval(f,500);';
-echo '</script>';
-if ($navigationVisibility === '1') {
+
+if ($navigationIsVisible) {
     echo '<link rel="client-packages-embed" name="responsiveAttributes">';
+    echo '<link rel="client-packages-embed" name="-bearcms-universal-theme">';
+    if ($navigationStoreCartButtonIsVisible) {
+        echo '<link rel="client-packages-embed" name="-bearcms-store">';
+    }
+    if ($navigationSearchButtonIsVisible) {
+        echo '<link rel="client-packages-embed" name="-bearcms-search">';
+    }
 }
+
 echo '</head>';
 echo '<body class="template-body">';
 $navigationContent = '';
-if ($navigationVisibility === '1') {
-    $navigationContent .= '<div class="template-navigation-container">';
-    $navigationContent .= '<nav class="template-navigation">';
-    $navigationContent .= '<div>';
-    $navigationContent .= '<div class="bearcms-navigation-toggle-item-store-cart" style="display:none;" onclick="this.parentNode.querySelector(\'.bearcms-navigation-element-item-store-cart\').firstChild.click();"></div>';
-    $navigationContent .= '<div class="bearcms-navigation-toggle-item-search" style="display:none;" onclick="this.parentNode.querySelector(\'.bearcms-navigation-element-item-search\').firstChild.click();"></div>';
-    $navigationContent .= '<input id="template-navigation-toggle-button" type="checkbox"/><label for="template-navigation-toggle-button">&nbsp;</label>';
-    $navigationContent .= '<div><component src="bearcms-navigation-element" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" menuType="horizontal-down" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '" data-responsive-attributes="vw<680=>menuType=none,vw>=680=>menuType=horizontal-down" allowSearchButtonOption="true" allowStoreCartButtonOption="true"/></div>';
-    $navigationContent .= '</div>';
+if ($navigationIsVisible) {
+    $additionalButtons = '';
+    if ($navigationStoreCartButtonIsVisible) {
+        $additionalButtons .= '<div class="bearcms-navigation-button-store-cart" onclick="bearCMS.store.openCart();" title="' . htmlentities(__('bearcms.themes.universal.OpenStoreCart')) . '"></div>';
+    }
+    if ($navigationSearchButtonIsVisible) {
+        $additionalButtons .= '<div class="bearcms-navigation-button-search" onclick="bearCMS.search.open();" title="' . htmlentities(__('bearcms.themes.universal.OpenSiteSearch')) . '"></div>';
+    }
+
+    $navigationContent .= '<div class="template-navigation-container"' . $navigationContainerAttributes . '>';
+    $navigationContent .= '<div class="template-navigation">';
+    $navigationContent .= '<nav class="template-navigation-items">';
+    $navigationContent .= '<component src="bearcms-navigation-element" menuType="responsive" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '"/>';
     $navigationContent .= '</nav>';
+    $navigationContent .= '<div class="template-navigation-additional-buttons">' . $additionalButtons . '</div>';
     $navigationContent .= '</div>';
+    $navigationContent .= '<script>bearCMS.universalTheme.initializeNavigation();</script>';
+    $navigationContent .= '</div>';
+    if ($headerLayout === 'navHoverOverHeader' || $headerLayout === 'navHoverOverHeaderContainer') {
+        $navigationContent = '<div style="position:relative;">' . $navigationContent . '</div>';
+    }
 }
 
-if ($navigationPosition === '1') {
+if ($navigationIsVisible && $headerLayout === 'navAboveHeaderContainer') {
     echo $navigationContent;
 }
 
 echo '<div class="template-header-container">';
-echo '<header class="template-header">';
 
-if (isset($headerLogoImage[0])) {
-    $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
-    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities($headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities($headerLogoImageDetails['height']) . '"/>';
-    echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
-}
-if ($headerTitleVisibility === '1') {
-    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
-}
-if ($headerDescriptionVisibility === '1') {
-    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
-}
-
-echo '</header>';
-echo '</div>';
-
-if ($navigationPosition === '2') {
+if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderContainerFirst' || $headerLayout === 'navHoverOverHeaderContainer')) {
     echo $navigationContent;
 }
 
-if ($isHomePage && $homePageSpecialContentBlockVisibility === '1') {
+echo '<header class="template-header">';
+
+if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderFirst' || $headerLayout === 'navHoverOverHeader')) {
+    echo $navigationContent;
+}
+
+if (isset($headerLogoImage[0])) {
+    $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
+    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities((string)$headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities((string)$headerLogoImageDetails['height']) . '"/>';
+    echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
+}
+if ($headerTitleIsVisible) {
+    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
+}
+if ($headerDescriptionIsVisible) {
+    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
+}
+
+if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderLast' || $headerLayout === 'horizontal')) {
+    echo $navigationContent;
+}
+
+echo '</header>';
+
+if ($navigationIsVisible && $headerLayout === 'navInsideHeaderContainerLast') {
+    echo $navigationContent;
+}
+
+echo '</div>';
+
+if ($navigationIsVisible && $headerLayout === 'navBelowHeaderContainer') {
+    echo $navigationContent;
+}
+
+if ($isHomePage && $homePageSpecialContentBlockIsVisible) {
     echo '<div class="template-homepage-special-content-block-container">';
     echo '<section class="template-homepage-special-content-block">';
     echo '<component src="bearcms-elements" editable="true" class="homepage-special-bearcms-elements" id="homepage-special' . $elementsLanguageSuffix . '"/>';
@@ -241,12 +240,13 @@ echo '{{body}}';
 echo '</section>';
 echo '</div>';
 
-if ($footerVisibility === '1') {
+if ($footerIsVisible) {
     echo '<div class="template-footer-container">';
     echo '<footer class="template-footer">';
     echo '<component src="bearcms-elements" editable="true" class="footer-bearcms-elements" id="footer' . $elementsLanguageSuffix . '"/>';
     echo '</footer>';
     echo '</div>';
 }
+
 echo '</body>';
 echo '</html>';
