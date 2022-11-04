@@ -26,7 +26,7 @@ $app->bearCMS->themes
         $context->assets
             ->addDir('assets');
 
-        $theme->version = '1.19';
+        $theme->version = '1.20';
 
         $theme->canStyleElements = true;
         $theme->useDefaultElementsCombinations = true;
@@ -124,6 +124,7 @@ $app->bearCMS->themes
                     unset($values['navigationPosition']);
                 }
                 if (isset($values['navigationCSS'])) {
+                    $navigationContainerCSS = \BearCMS\Internal\Themes::getValueDetails(isset($values['navigationContainerCSS']) ? $values['navigationContainerCSS'] : '');
                     $navigationCSS = \BearCMS\Internal\Themes::getValueDetails($values['navigationCSS']);
                     $updatedNavigationCSS = $navigationCSS;
                     $contentAlignToSet = null;
@@ -134,14 +135,18 @@ $app->bearCMS->themes
                         $contentAlignToSet = $updatedNavigationCSS['value']['text-align'];
                         unset($updatedNavigationCSS['value']['text-align']);
                     }
-                    if (empty($updatedNavigationCSS['states'])) {
-                        $updatedNavigationCSS['states'][] =  [":screen-size(maxWidth=680)", [
-                            "padding-left" => "0px",
-                            "padding-top" => "0px",
-                            "padding-right" => "0px",
-                            "padding-bottom" => "0px;"
-                        ]];
+                    if (isset($navigationContainerCSS['value']['text-align'])) {
+                        if ($contentAlignToSet === null) {
+                            $contentAlignToSet = $navigationContainerCSS['value']['text-align'];
+                        }
+                        unset($navigationContainerCSS['value']['text-align']);
                     }
+                    $updatedNavigationCSS['states'][] =  [":screen-size(maxWidth=680)", [
+                        "padding-left" => "0px",
+                        "padding-top" => "0px",
+                        "padding-right" => "0px",
+                        "padding-bottom" => "0px"
+                    ]];
                     $prefixes = [
                         'navigationTypeHorizontal',
                         'navigationTypeButtonBlock',
@@ -169,6 +174,9 @@ $app->bearCMS->themes
                             }
                             $setBackgroundImageForAllStates = function (string $filename) use (&$navigationItemCSS, $type) {
                                 $defaultColor = '#ffffff';
+                                $defaultStateColor = null;
+                                $defaultPaddingLeft = '15px';
+                                $defaultStatePaddingLeft = null;
                                 foreach (['', ':hover', ':active'] as $state) {
                                     $stateIndexToUpdate = null;
                                     if ($state === '') {
@@ -186,9 +194,14 @@ $app->bearCMS->themes
                                             }
                                         }
                                     }
-                                    $color = isset($valueToUpdate['color']) ? strtolower($valueToUpdate['color']) : $defaultColor;
+                                    $color = isset($valueToUpdate['color']) ? strtolower($valueToUpdate['color']) : ($defaultStateColor !== null ? $defaultStateColor : $defaultColor);
                                     if ($color === '#fff') {
                                         $color = '#ffffff';
+                                    }
+                                    $paddingLeft = isset($valueToUpdate['padding-left']) ? $valueToUpdate['padding-left'] : ($defaultStatePaddingLeft !== null ? $defaultStatePaddingLeft : $defaultPaddingLeft);
+                                    if ($state === '') {
+                                        $defaultStateColor = $color;
+                                        $defaultStatePaddingLeft = $paddingLeft;
                                     }
                                     $filenameOptions = $color !== $defaultColor ? '?s=' . trim($color, '#') : '';
                                     if ($state === '' || $filenameOptions !== '') {
@@ -196,7 +209,7 @@ $app->bearCMS->themes
                                         $valueToUpdate['background-repeat'] = 'no-repeat';
                                         if ($type === 'toggle') {
                                             $valueToUpdate['background-size'] = '20px 20px'; // auto 50%
-                                            $valueToUpdate['background-position'] = 'left ' . (isset($valueToUpdate['padding-left']) ? $valueToUpdate['padding-left'] : '15px') . ' center';
+                                            $valueToUpdate['background-position'] = 'left ' . $paddingLeft . ' center';
                                         } else {
                                             $valueToUpdate['background-size'] = '20px 20px';
                                             $valueToUpdate['background-position'] = 'center center';
