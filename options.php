@@ -227,7 +227,7 @@ $navigationSearchButtonGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "0",
+        "defaultValue" => "auto",
         "onHighlight" => [
             ["cssSelector", ".bearcms-navigation-button-search"]
         ]
@@ -249,7 +249,7 @@ $navigationStoreCartButtonGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "0",
+        "defaultValue" => "auto",
         "onHighlight" => [
             ["cssSelector", ".bearcms-navigation-button-store-cart"]
         ]

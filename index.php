@@ -24,9 +24,10 @@ $app->bearCMS->themes
             });
 
         $context->assets
-            ->addDir('assets');
+            ->addDir('assets')
+            ->addDir('values/files');
 
-        $theme->version = '1.20';
+        $theme->version = '1.21';
 
         $theme->canStyleElements = true;
         $theme->useDefaultElementsCombinations = true;
@@ -74,44 +75,7 @@ $app->bearCMS->themes
             return $manifest;
         };
 
-        $theme->options = function () use ($app, $context, $theme) {
-            $options = $theme->makeOptions(); // used inside
-            require $context->dir . '/options.php';
-            $values = require $context->dir . '/styles/1.php';
-            $options->setValues($values);
-            if ($app->bearCMS->hasEventListeners('internalBearCMSUniversalThemeOptions')) {
-                $eventDetails = new stdClass();
-                $eventDetails->options = $options;
-                $app->bearCMS->dispatchEvent('internalBearCMSUniversalThemeOptions', $eventDetails);
-                $options = $eventDetails->options;
-            }
-            return $options;
-        };
-
-        $theme->styles = function () use ($app, $context, $theme) {
-            $styles = [];
-            for ($i = 1; $i <= 21; $i++) {
-                $style = $theme->makeStyle();
-                $style->media = [
-                    [
-                        'filename' => $context->dir . '/assets/' . $i . '.jpg',
-                        'width' => 1416,
-                        'height' => 1062,
-                    ]
-                ];
-                $style->values = require $context->dir . '/styles/' . $i . '.php';
-                $styles[] = $style;
-            }
-            if ($app->bearCMS->hasEventListeners('internalBearCMSUniversalThemeStyles')) {
-                $eventDetails = new stdClass();
-                $eventDetails->styles = $styles;
-                $app->bearCMS->dispatchEvent('internalBearCMSUniversalThemeStyles', $eventDetails);
-                $styles = $eventDetails->styles;
-            }
-            return $styles;
-        };
-
-        $theme->updateValues = function (array $values = null) {
+        $updateValues = function (array $values = null) {
             if (is_array($values)) {
                 if (isset($values['navigationPosition']) && !isset($values['headerLayout'])) {
                     $navigationPosition = \BearCMS\Internal\Themes::getValueDetails($values['navigationPosition']);
@@ -122,6 +86,12 @@ $app->bearCMS->themes
                     }
                     $values['navigationType'] = '{"value":"horizontal","states":[[":screen-size(maxWidth=680)", "buttonBlock"]]}';
                     unset($values['navigationPosition']);
+                    if (!isset($values['navigationSearchButtonVisibility'])) {
+                        $values['navigationSearchButtonVisibility'] = '0';
+                    }
+                    if (!isset($values['navigationStoreCartButtonVisibility'])) {
+                        $values['navigationStoreCartButtonVisibility'] = '0';
+                    }
                 }
                 if (isset($values['navigationCSS'])) {
                     $navigationContainerCSS = \BearCMS\Internal\Themes::getValueDetails(isset($values['navigationContainerCSS']) ? $values['navigationContainerCSS'] : '');
@@ -282,6 +252,23 @@ $app->bearCMS->themes
                 }
             }
             return $values;
+        };
+
+        $theme->updateValues = $updateValues;
+
+        $theme->options = function () use ($app, $context, $theme, &$updateValues) {
+            $options = $theme->makeOptions(); // used inside
+            require $context->dir . '/options.php';
+            $values = json_decode(file_get_contents($context->dir . '/values/values.json'), true);
+            $values = $updateValues($values);
+            $options->setValues($values, true);
+            if ($app->bearCMS->hasEventListeners('internalBearCMSUniversalThemeOptions')) {
+                $eventDetails = new stdClass();
+                $eventDetails->options = $options;
+                $app->bearCMS->dispatchEvent('internalBearCMSUniversalThemeOptions', $eventDetails);
+                $options = $eventDetails->options;
+            }
+            return $options;
         };
 
         if ($app->bearCMS->hasEventListeners('internalBearCMSUniversalThemeRegister')) {
