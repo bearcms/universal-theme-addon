@@ -11,25 +11,31 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
         var element = document.querySelector(".template-navigation");
         var containerElement = document.querySelector('.template-navigation-container');
 
-        var lastSetUpdateKey = null;
+        var lastUpdateVersion = null;
         var navigationElement = document.querySelector('.template-navigation-items');
         var additionalButtons = document.querySelector('.template-navigation-additional-buttons');
         var hasAdditionalButtons = additionalButtons !== null;
-        var navigationMenuElement = element.querySelector('ul');
         var setNavigationMenuType = function (type) {
+            var navigationMenuElement = element.querySelector('ul'); // must be inside wo work after nav element update
             if (navigationMenuElement !== null) {
                 navigationMenuElement.setAttribute('data-nm-type', type);
             }
+        };
+        var getNavigationMenuType = function () {
+            var navigationMenuElement = element.querySelector('ul'); // must be inside wo work after nav element update
+            if (navigationMenuElement !== null) {
+                return navigationMenuElement.getAttribute('data-nm-type');
+            }
+            return null;
         };
         var fragment = document.createDocumentFragment();
         function update() {
             var navType = containerElement.getAttribute('data-nav-type');
             var navLayout = containerElement.getAttribute('data-nav-layout-' + navType);
-            var updateKey = navType + '/' + navLayout;
-            if (lastSetUpdateKey === updateKey) {
+            var currentUpdateVersion = navType + '/' + navLayout + '/' + getNavigationMenuType();
+            if (lastUpdateVersion === currentUpdateVersion) {
                 return;
             }
-            lastSetUpdateKey = updateKey;
             fragment.appendChild(navigationElement);
             if (hasAdditionalButtons) {
                 fragment.appendChild(additionalButtons);
@@ -54,9 +60,10 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                 });
                 button.toggle = toggle;
             };
+            var navigationMenuTypeToSet = null;
             if (navType === 'horizontal') {
                 element.innerHTML = '';
-                setNavigationMenuType('horizontal-down');
+                navigationMenuTypeToSet = 'horizontal-down';
                 element.appendChild(navigationElement);
                 if (hasAdditionalButtons) {
                     element.appendChild(additionalButtons);
@@ -79,7 +86,7 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                         buttonsContainer.insertBefore(additionalButtons, toggleButtonContainer);
                     }
                 }
-                setNavigationMenuType('none');
+                navigationMenuTypeToSet = 'none';
                 activateToggleButton(toggleButton, itemsContainer);
             } else if (navType === 'button-overlay') {
                 var openFromLeft = navLayout === 'toggle-left';
@@ -105,7 +112,7 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                         buttonsContainer.insertBefore(additionalButtons, toggleButtonContainer);
                     }
                 }
-                setNavigationMenuType(openFromLeft ? 'vertical-right' : 'vertical-left');
+                navigationMenuTypeToSet = openFromLeft ? 'vertical-right' : 'vertical-left';
                 activateToggleButton(toggleButton, overlayContainer);
                 itemsContainer.addEventListener('mousedown', function (event) {
                     event.stopPropagation();
@@ -140,7 +147,7 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                         buttonsContainer.insertBefore(additionalButtons, toggleButtonContainer);
                     }
                 }
-                setNavigationMenuType(alignLeft ? 'vertical-right' : 'vertical-left');
+                navigationMenuTypeToSet = alignLeft ? 'vertical-right' : 'vertical-left';
                 var updateContainer = function () {
                     var itemsContainerClientRect = itemsContainer.getBoundingClientRect();
                     var itemsContainerWidth = itemsContainerClientRect.width;
@@ -187,12 +194,14 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                     event.stopPropagation();
                 });
             }
+            setNavigationMenuType(navigationMenuTypeToSet);
+            lastUpdateVersion = navType + '/' + navLayout + '/' + navigationMenuTypeToSet;
         };
 
         window.addEventListener('resize', update);
         window.addEventListener('orientationchange', update);
         update();
-        (new MutationObserver(update)).observe(containerElement, { attributes: true });
+        (new MutationObserver(update)).observe(containerElement, { attributes: true, childList: true, subtree: true });
     };
 
     return {
