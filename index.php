@@ -27,7 +27,7 @@ $app->bearCMS->themes
             ->addDir('assets')
             ->addDir('values/files');
 
-        $theme->version = '1.21';
+        $theme->version = '1.22';
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
             $language = isset($cntx['language']) ? $cntx['language'] : null;
@@ -247,6 +247,80 @@ $app->bearCMS->themes
                         unset($values['navigationContainerCSS']);
                     }
                 }
+            }
+            
+            // Get old assets from the CMS server
+            $oldAssets = array(
+                'addon:bearcms/universal-theme-addon:assets/s8/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s8/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s7/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s7/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s5/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s5/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s4/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s4/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s3/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s3/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s20/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s20/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s19/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s19/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s18/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s18/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s17/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s17/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s16/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s16/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s12/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s12/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/s11/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s11/1.jpg',
+                'addon:bearcms/universal-theme-addon:assets/checkbox-icon-111.svg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/checkbox-icon-111.svg',
+                'addon:bearcms/universal-theme-addon:assets/radio-icon-111.svg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/radio-icon-111.svg',
+                'addon:bearcms/universal-theme-addon:assets/search-icon.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/search-icon.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s9/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s9/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s9/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s9/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s8/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s8/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s8/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s8/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s7/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s7/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s7/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s7/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s6/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s6/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s6/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s6/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s5/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s5/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s5/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s5/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s4/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s4/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s4/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s4/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s3/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s3/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s3/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s3/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s21/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s21/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s21/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s21/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s20/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s20/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s20/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s20/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s2/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s2/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s2/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s2/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s19/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s19/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s19/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s19/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s18/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s18/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s18/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s18/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s17/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s17/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s17/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s17/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s16/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s16/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s16/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s16/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s15/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s15/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s15/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s15/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s14/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s14/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s14/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s14/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s13/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s13/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s13/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s13/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s12/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s12/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s12/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s12/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s11/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s11/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s11/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s11/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s10/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s10/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s10/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s10/2.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s1/1.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s1/1.png',
+                'addon:internal/cms:themes/bearcms-universal/assets/s1/2.png' => 'addon:bearcms/bearframework-addon:assets/s/otsa/c/universal/assets/s1/2.png',
+            );
+            $valuesJSON = json_encode($values, true);
+            if (strpos($valuesJSON, ':') !== false) {
+                foreach ($oldAssets as $oldKey => $newKey) {
+                    $search[] = 'url(' . $oldKey . ')';
+                    $replace[] = 'url(' . $newKey . ')';
+                    $search[] = trim(json_encode('url(' . $oldKey . ')', JSON_THROW_ON_ERROR), '"');
+                    $replace[] = trim(json_encode('url(' . $newKey . ')', JSON_THROW_ON_ERROR), '"');
+                    $search[] = trim(json_encode(trim(json_encode('url(' . $oldKey . ')', JSON_THROW_ON_ERROR), '"'), JSON_THROW_ON_ERROR), '"');
+                    $replace[] = trim(json_encode(trim(json_encode('url(' . $newKey . ')', JSON_THROW_ON_ERROR), '"'), JSON_THROW_ON_ERROR), '"');
+                }
+                $valuesJSON = str_replace($search, $replace, $valuesJSON);
+                $values = json_decode($valuesJSON, true);
             }
             return $values;
         };
