@@ -106,41 +106,6 @@ if ($navigationIsVisible) {
     } else {
         echo 'body .template-navigation-container{position:relative;}'; // for the buttonDropDown
     }
-
-    $navigationContainerAttributes = '';
-    $navigationContainerResponsiveAttributes = '';
-
-    $addNavigationContainerResponsiveAttributes = function (string $name, callable $converter) use ($customizations, &$navigationContainerResponsiveAttributes) {
-        $details = $customizations->getValueDetails($name, ['responsiveAttributes' => $converter]);
-        if ($details['responsiveAttributes'] !== '') {
-            $navigationContainerResponsiveAttributes .= ',' . $details['responsiveAttributes'];
-        }
-    };
-    $addNavigationContainerResponsiveAttributes('navigationType', function ($value) {
-        if ($value === 'horizontal') {
-            return ['data-nav-type' => 'horizontal'];
-        } elseif ($value === 'buttonBlock') {
-            return ['data-nav-type' => 'button-block'];
-        } elseif ($value === 'buttonDropDown') {
-            return ['data-nav-type' => 'button-drop-down'];
-        } elseif ($value === 'buttonOverlay') {
-            return ['data-nav-type' => 'button-overlay'];
-        }
-    });
-
-    $addButtonsLayoutAttributes = function (string $name, string $type) use ($customizations, &$navigationContainerAttributes) {
-        $value = (string)$customizations->getValue($name);
-        if ($value !== '') {
-            $navigationContainerAttributes .= ' data-nav-layout-' . $type . '="' . htmlentities($value === 'toggleLeft' ? 'toggle-left' : 'toggle-right') . '"';
-        }
-    };
-    $addButtonsLayoutAttributes('navigationTypeButtonBlockButtonsLayout', 'button-block');
-    $addButtonsLayoutAttributes('navigationTypeButtonDropDownButtonsLayout', 'button-drop-down');
-    $addButtonsLayoutAttributes('navigationTypeButtonOverlayButtonsLayout', 'button-overlay');
-
-    if ($navigationContainerResponsiveAttributes !== '') {
-        $navigationContainerAttributes .= ' data-responsive-attributes="' . htmlentities(trim($navigationContainerResponsiveAttributes, ',')) . '"';
-    }
 }
 
 echo '</style>';
@@ -168,7 +133,7 @@ if ($navigationIsVisible) {
         $additionalButtons .= '<div class="bearcms-navigation-button-search" onclick="bearCMS.search.open();" title="' . htmlentities(__('bearcms.themes.universal.OpenSiteSearch')) . '"></div>';
     }
 
-    $navigationContent .= '<div class="template-navigation-container"' . $navigationContainerAttributes . '>';
+    $navigationContent .= '<div class="template-navigation-container">';
     $navigationContent .= '<div class="template-navigation">';
     $navigationContent .= '<nav class="template-navigation-items">';
     $navigationContent .= '<component src="bearcms-navigation-element" menuType="responsive" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '"/>';

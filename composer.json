@@ -17,9 +17,8 @@
     ],
     "require": {
         "php": "7.1.*|7.2.*|7.3.*|7.4.*|8.0.*|8.1.*",
-        "bearcms/bearframework-addon": "^1.58",
+        "bearcms/bearframework-addon": "^1.62",
         "bearframework/localization-addon": "1.*",
-        "bearframework/html-template": "1.*",
         "ivopetkov/client-packages-bearframework-addon": "1.*",
         "ivopetkov/responsive-attributes-bearframework-addon": "1.*",
         "ivopetkov/html-server-components-bearframework-addon": "1.*"

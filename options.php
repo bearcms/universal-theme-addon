@@ -208,6 +208,14 @@ $navigationGroup
                 "type" => "pageType"
             ]
         ],
+        "attributesOutput" => [
+            ["selector", '.template-navigation-container', 'data-responsive-attributes-type', [
+                'horizontal' => ['data-nav-type' => 'horizontal'],
+                'buttonBlock' => ['data-nav-type' => 'button-block'],
+                'buttonDropDown' => ['data-nav-type' => 'button-drop-down'],
+                'buttonOverlay' => ['data-nav-type' => 'button-overlay'],
+            ]]
+        ],
         "defaultValue" => "horizontal"
     ]);
 $navigationSearchButtonGroup = $navigationGroup->addGroup(__("bearcms.themes.universal.options.Navigation.SearchButton"));
@@ -372,7 +380,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
     }
 };
 
-$addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $selectorPrefix) {
+$addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $selectorPrefix, $attributeSuffix) {
     $group->addOption($idPrefix . "ButtonsLayout", "list", __('bearcms.themes.universal.options.Navigation.ButtonsLayout'), [
         "values" => [
             [
@@ -385,6 +393,12 @@ $addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $se
                 "name" => __('bearcms.themes.universal.options.Navigation.ButtonsLayout.ToggleRight'),
                 "hint" => __('bearcms.themes.universal.options.Navigation.ButtonsLayout.ToggleRightDesc'),
             ]
+        ],
+        "attributesOutput" => [
+            ["selector", '.template-navigation-container', 'data-responsive-attributes-buttons-layout-' . $attributeSuffix, [
+                'toggleLeft' => ['data-nav-layout-' . $attributeSuffix => 'toggle-left'],
+                'toggleRight' => ['data-nav-layout-' . $attributeSuffix => 'toggle-right']
+            ]]
         ],
         "defaultValue" => "toggleLeft"
     ]);
@@ -460,7 +474,7 @@ $idPrefix = 'navigationTypeButtonBlock';
 $selectorPrefix = '.template-navigation-container[data-nav-type="button-block"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonBlock'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation .template-navigation-buttons');
-$addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix);
+$addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix, "button-block");
 $addNavigationTypeToggleButton($typeGroup, $idPrefix, $selectorPrefix);
 $addNavigationTypeAdditionalButtons($typeGroup, $idPrefix, $selectorPrefix);
 $addNavigationTypeItems($typeGroup, $idPrefix, $selectorPrefix, true, false);
@@ -471,7 +485,7 @@ $idPrefix = 'navigationTypeButtonDropDown';
 $selectorPrefix = '.template-navigation-container[data-nav-type="button-drop-down"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonDropDown'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation .template-navigation-buttons');
-$addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix);
+$addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix, "button-drop-down");
 $addNavigationTypeToggleButton($typeGroup, $idPrefix, $selectorPrefix);
 $addNavigationTypeAdditionalButtons($typeGroup, $idPrefix, $selectorPrefix);
 $addNavigationTypeItems($typeGroup, $idPrefix, $selectorPrefix, true, false);
@@ -482,7 +496,7 @@ $idPrefix = 'navigationTypeButtonOverlay';
 $selectorPrefix = '.template-navigation-container[data-nav-type="button-overlay"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonOverlay'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation .template-navigation-buttons');
-$addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix);
+$addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix, "button-overlay");
 $addNavigationTypeToggleButton($typeGroup, $idPrefix, $selectorPrefix);
 $addNavigationTypeAdditionalButtons($typeGroup, $idPrefix, $selectorPrefix);
 $addNavigationTypeItems($typeGroup, $idPrefix, $selectorPrefix, true, false);
