@@ -27,7 +27,7 @@ $app->bearCMS->themes
             ->addDir('assets')
             ->addDir('values/files');
 
-        $theme->version = '1.22';
+        $theme->version = '1.23';
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
             $language = isset($cntx['language']) ? $cntx['language'] : null;
