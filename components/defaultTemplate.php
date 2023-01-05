@@ -22,6 +22,7 @@ if (isset($languages[0]) && $languages[0] !== $language) {
 
 $isHomePage = (string) $app->request->path === $homePath;
 
+$headerIsVisible = $customizations->getValue('headerVisibility') === '1';
 $headerLayout = (string)$customizations->getValue('headerLayout');
 $headerLogoImage = (string)$customizations->getValue('headerLogoImage');
 $headerTitleIsVisible = (string)$customizations->getValue('headerTitleVisibility') === '1';
@@ -123,6 +124,7 @@ if ($navigationIsVisible) {
 
 echo '</head>';
 echo '<body class="template-body">';
+
 $navigationContent = '';
 if ($navigationIsVisible) {
     $additionalButtons = '';
@@ -151,41 +153,43 @@ if ($navigationIsVisible && $headerLayout === 'navAboveHeaderContainer') {
     echo $navigationContent;
 }
 
-echo '<div class="template-header-container">';
+if ($headerIsVisible) {
+    echo '<div class="template-header-container">';
 
-if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderContainerFirst' || $headerLayout === 'navHoverOverHeaderContainer')) {
-    echo $navigationContent;
+    if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderContainerFirst' || $headerLayout === 'navHoverOverHeaderContainer')) {
+        echo $navigationContent;
+    }
+
+    echo '<header class="template-header">';
+
+    if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderFirst' || $headerLayout === 'navHoverOverHeader')) {
+        echo $navigationContent;
+    }
+
+    if (isset($headerLogoImage[0])) {
+        $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
+        $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities((string)$headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities((string)$headerLogoImageDetails['height']) . '"/>';
+        echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
+    }
+    if ($headerTitleIsVisible) {
+        echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
+    }
+    if ($headerDescriptionIsVisible) {
+        echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
+    }
+
+    if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderLast' || $headerLayout === 'horizontal')) {
+        echo $navigationContent;
+    }
+
+    echo '</header>';
+
+    if ($navigationIsVisible && $headerLayout === 'navInsideHeaderContainerLast') {
+        echo $navigationContent;
+    }
+
+    echo '</div>';
 }
-
-echo '<header class="template-header">';
-
-if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderFirst' || $headerLayout === 'navHoverOverHeader')) {
-    echo $navigationContent;
-}
-
-if (isset($headerLogoImage[0])) {
-    $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
-    $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities((string)$headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities((string)$headerLogoImageDetails['height']) . '"/>';
-    echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
-}
-if ($headerTitleIsVisible) {
-    echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
-}
-if ($headerDescriptionIsVisible) {
-    echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
-}
-
-if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderLast' || $headerLayout === 'horizontal')) {
-    echo $navigationContent;
-}
-
-echo '</header>';
-
-if ($navigationIsVisible && $headerLayout === 'navInsideHeaderContainerLast') {
-    echo $navigationContent;
-}
-
-echo '</div>';
 
 if ($navigationIsVisible && $headerLayout === 'navBelowHeaderContainer') {
     echo $navigationContent;

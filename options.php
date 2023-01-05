@@ -62,6 +62,19 @@ $headerGroup->addOption("headerLayout", "list", __("bearcms.themes.universal.opt
     ],
     "defaultValue" => "navInsideHeaderLast"
 ]);
+$headerGroup->addOption("headerVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
+    "values" => [
+        [
+            "value" => "1",
+            "name" => __("bearcms.themes.universal.options.Visible")
+        ],
+        [
+            "value" => "0",
+            "name" => __("bearcms.themes.universal.options.Hidden")
+        ]
+    ],
+    "defaultValue" => "1"
+]);
 $headerGroup->addOption("headerCSS", "css", "", [
     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
     "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
