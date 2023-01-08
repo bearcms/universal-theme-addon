@@ -421,7 +421,7 @@ $addNavigationTypeToggleButton = function ($group, string $idPrefix, string $sel
     $toggleButton = $group->addGroup(__('bearcms.themes.universal.options.Navigation.ToggleButton'));
     $toggleButton->addOption($idPrefix . "ToggleButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation-button-toggle", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .template-navigation-button-toggle"]
@@ -444,7 +444,7 @@ $addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string
     $storeCartButton = $additionalButtons->addGroup(__('bearcms.themes.universal.options.Navigation.StoreCartButton'));
     $storeCartButton->addOption($idPrefix . "StoreCartButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .bearcms-navigation-button-store-cart", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .bearcms-navigation-button-store-cart"]
@@ -453,7 +453,7 @@ $addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string
     $searchButton = $additionalButtons->addGroup(__('bearcms.themes.universal.options.Navigation.SearchButton'));
     $searchButton->addOption($idPrefix . "SearchButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .bearcms-navigation-button-search", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .bearcms-navigation-button-search"]
@@ -516,7 +516,7 @@ $addNavigationTypeItems($typeGroup, $idPrefix, $selectorPrefix, true, false);
 $closeButtonGroup = $typeGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonOverlay.CloseButton'));
 $closeButtonGroup->addOption($idPrefix . "CloseButtonCSS", "css", "", [
     "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState",  "*/screenSizeState", "*/pageTypeState"],
+    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
     "cssOutput" => [
         ["rule", $selectorPrefix . " .template-navigation-items-close-button", "box-sizing:border-box;cursor:pointer;"],
         ["selector", $selectorPrefix . " .template-navigation-items-close-button"]
