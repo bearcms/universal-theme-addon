@@ -30,8 +30,16 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
         };
         var fragment = document.createDocumentFragment();
         function update() {
-            var navType = containerElement.getAttribute('data-nav-type');
-            var navLayout = containerElement.getAttribute('data-nav-layout-' + navType);
+            var navType = containerElement.getAttribute('data-bearcms-universal-theme-navigation-type');
+            var buttonsLayoutSuffix = 'horizontal';
+            if (navType === 'buttonBlock') {
+                buttonsLayoutSuffix = 'button-block';
+            } else if (navType === 'buttonDropDown') {
+                buttonsLayoutSuffix = 'button-drop-down';
+            } else if (navType === 'buttonOverlay') {
+                buttonsLayoutSuffix = 'button-overlay';
+            }
+            var navLayout = containerElement.getAttribute('data-bearcms-universal-theme-navigation-buttons-layout-' + buttonsLayoutSuffix);
             var currentUpdateVersion = navType + '/' + navLayout + '/' + getNavigationMenuType();
             if (lastUpdateVersion === currentUpdateVersion) {
                 return;
@@ -68,8 +76,8 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                 if (hasAdditionalButtons) {
                     element.appendChild(additionalButtons);
                 }
-            } else if (navType === 'button-block') {
-                var toggleButtonIsOnLeft = navLayout === 'toggle-left';
+            } else if (navType === 'buttonBlock') {
+                var toggleButtonIsOnLeft = navLayout === 'toggleLeft';
                 element.innerHTML = '<div class="template-navigation-buttons">' +
                     '<div class="template-navigation-button-toggle-container"><div class="template-navigation-button-toggle"></div></div>' +
                     '</div>' +
@@ -88,9 +96,9 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                 }
                 navigationMenuTypeToSet = 'none';
                 activateToggleButton(toggleButton, itemsContainer);
-            } else if (navType === 'button-overlay') {
-                var openFromLeft = navLayout === 'toggle-left';
-                var toggleButtonIsOnLeft = navLayout === 'toggle-left';
+            } else if (navType === 'buttonOverlay') {
+                var openFromLeft = navLayout === 'toggleLeft';
+                var toggleButtonIsOnLeft = navLayout === 'toggleLeft';
                 element.innerHTML = '<div class="template-navigation-items-overlay">' +
                     '<div class="template-navigation-items-background"></div>' +
                     '<div class="template-navigation-items-container"><div class="template-navigation-items-close-button-container"><div class="template-navigation-items-close-button"></div></div></div>' +
@@ -128,9 +136,9 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                     event.stopPropagation();
                     toggleButton.toggle();
                 });
-            } else if (navType === 'button-drop-down') {
-                var alignLeft = navLayout === 'toggle-left';
-                var toggleButtonIsOnLeft = navLayout === 'toggle-left';
+            } else if (navType === 'buttonDropDown') {
+                var alignLeft = navLayout === 'toggleLeft';
+                var toggleButtonIsOnLeft = navLayout === 'toggleLeft';
                 element.innerHTML = '<div class="template-navigation-items-container"></div>' +
                     '<div class="template-navigation-buttons">' +
                     '<div class="template-navigation-button-toggle-container"><div class="template-navigation-button-toggle"></div></div>' +

@@ -221,13 +221,8 @@ $navigationGroup
                 "type" => "pageType"
             ]
         ],
-        "attributesOutput" => [
-            ["selector", '.template-navigation-container', 'data-responsive-attributes-type', [
-                'horizontal' => ['data-nav-type' => 'horizontal'],
-                'buttonBlock' => ['data-nav-type' => 'button-block'],
-                'buttonDropDown' => ['data-nav-type' => 'button-drop-down'],
-                'buttonOverlay' => ['data-nav-type' => 'button-overlay'],
-            ]]
+        "cssOutput" => [
+            ["selector", '.template-navigation-container', '--css-to-attribute-data-bearcms-universal-theme-navigation-type:{value};'],
         ],
         "defaultValue" => "horizontal"
     ]);
@@ -289,25 +284,19 @@ $addNavigationType = function ($group, string $idPrefix, string $selectorPrefix,
         "values" => [
             [
                 "value" => "left",
-                "name" => __('bearcms.themes.universal.options.Navigation.ContentAlign.Left'),
-                "cssRules" => [
-                    $selectorPrefix . " " . $navigationContentAlignSelector => 'justify-content:start;'
-                ]
+                "name" => __('bearcms.themes.universal.options.Navigation.ContentAlign.Left')
             ],
             [
                 "value" => "center",
-                "name" => __('bearcms.themes.universal.options.Navigation.ContentAlign.Center'),
-                "cssRules" => [
-                    $selectorPrefix . " " . $navigationContentAlignSelector => 'justify-content:center;'
-                ]
+                "name" => __('bearcms.themes.universal.options.Navigation.ContentAlign.Center')
             ],
             [
                 "value" => "right",
-                "name" => __('bearcms.themes.universal.options.Navigation.ContentAlign.Right'),
-                "cssRules" => [
-                    $selectorPrefix . " " . $navigationContentAlignSelector => 'justify-content:end;'
-                ]
+                "name" => __('bearcms.themes.universal.options.Navigation.ContentAlign.Right')
             ]
+        ],
+        "cssOutput" => [
+            ["selector", $selectorPrefix . " " . $navigationContentAlignSelector, '--css-to-attribute-data-bearcms-universal-theme-navigation-content-align:{value};'],
         ],
         "defaultValue" => "left"
     ]);
@@ -407,11 +396,8 @@ $addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $se
                 "hint" => __('bearcms.themes.universal.options.Navigation.ButtonsLayout.ToggleRightDesc'),
             ]
         ],
-        "attributesOutput" => [
-            ["selector", '.template-navigation-container', 'data-responsive-attributes-buttons-layout-' . $attributeSuffix, [
-                'toggleLeft' => ['data-nav-layout-' . $attributeSuffix => 'toggle-left'],
-                'toggleRight' => ['data-nav-layout-' . $attributeSuffix => 'toggle-right']
-            ]]
+        "cssOutput" => [
+            ["selector", $selectorPrefix, '--css-to-attribute-data-bearcms-universal-theme-navigation-buttons-layout-' . $attributeSuffix . ':{value};'],
         ],
         "defaultValue" => "toggleLeft"
     ]);
@@ -475,7 +461,7 @@ $typesGroup = $navigationGroup->addGroup(__('bearcms.themes.universal.options.Na
 
 // HORIZONTAL
 $idPrefix = 'navigationTypeHorizontal';
-$selectorPrefix = '.template-navigation-container[data-nav-type="horizontal"]';
+$selectorPrefix = '.template-navigation-container[data-bearcms-universal-theme-navigation-type="horizontal"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.Horizontal'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation');
 $addNavigationTypeItems($typeGroup, $idPrefix, $selectorPrefix, false, true);
@@ -484,7 +470,7 @@ $addNavigationTypeContainer($typeGroup, $idPrefix, $selectorPrefix);
 
 // BUTTON BLOCK
 $idPrefix = 'navigationTypeButtonBlock';
-$selectorPrefix = '.template-navigation-container[data-nav-type="button-block"]';
+$selectorPrefix = '.template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonBlock'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation .template-navigation-buttons');
 $addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix, "button-block");
@@ -495,7 +481,7 @@ $addNavigationTypeContainer($typeGroup, $idPrefix, $selectorPrefix);
 
 // BUTTON DROP DOWN
 $idPrefix = 'navigationTypeButtonDropDown';
-$selectorPrefix = '.template-navigation-container[data-nav-type="button-drop-down"]';
+$selectorPrefix = '.template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonDropDown'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation .template-navigation-buttons');
 $addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix, "button-drop-down");
@@ -506,7 +492,7 @@ $addNavigationTypeContainer($typeGroup, $idPrefix, $selectorPrefix);
 
 // BUTTON OVERLAY
 $idPrefix = 'navigationTypeButtonOverlay';
-$selectorPrefix = '.template-navigation-container[data-nav-type="button-overlay"]';
+$selectorPrefix = '.template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"]';
 $typeGroup = $typesGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonOverlay'));
 $addNavigationType($typeGroup, $idPrefix, $selectorPrefix, '.template-navigation .template-navigation-buttons');
 $addNavigationTypeButtonsLayout($typeGroup, $idPrefix, $selectorPrefix, "button-overlay");

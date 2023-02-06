@@ -27,7 +27,7 @@ $app->bearCMS->themes
             ->addDir('assets')
             ->addDir('values/files');
 
-        $theme->version = '1.25';
+        $theme->version = '1.26';
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
             $language = isset($cntx['language']) ? $cntx['language'] : null;
@@ -248,7 +248,7 @@ $app->bearCMS->themes
                     }
                 }
             }
-            
+
             // Get old assets from the CMS server
             $oldAssets = array(
                 'addon:bearcms/universal-theme-addon:assets/s8/1.jpg' => 'addon:bearcms/bearframework-addon:assets/s/otsa/t/universal/assets/s8/1.jpg',
@@ -351,7 +351,7 @@ $app->bearCMS->themes
 
         $app->clientPackages
             ->add('-bearcms-universal-theme', function (IvoPetkov\BearFrameworkAddons\ClientPackage $package) use ($context) {
-                //$package->addJSCode(file_get_contents($context->dir . '/dev/universalTheme.js'));
+                //$package->addJSCode(file_get_contents($context->dir . '/dev/universalTheme.js')); // dev mode
                 $package->addJSCode(include $context->dir . '/assets/universalTheme.js.min.php');
             });
     });

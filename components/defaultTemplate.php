@@ -65,39 +65,43 @@ if ($navigationIsVisible) {
     echo 'body .template-navigation .bearcms-navigation-element-item-more{cursor:pointer;}';
     echo 'body .template-navigation .bearcms-navigation-element-item-more > a:before{content:"...";}';
 
-    echo 'body .template-navigation-container[data-nav-type="horizontal"] .template-navigation{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="horizontal"] .template-navigation-additional-buttons{flex:0 0 auto;}';
-    echo 'body .template-navigation-container[data-nav-type="horizontal"] .template-navigation-items{flex:0 1 auto;min-width:0;}';
-    echo 'body .template-navigation-container[data-nav-type="horizontal"] .bearcms-navigation-element-item-children{z-index:10;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="horizontal"] .template-navigation{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="horizontal"] .template-navigation-additional-buttons{flex:0 0 auto;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="horizontal"] .template-navigation-items{flex:0 1 auto;min-width:0;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="horizontal"] .bearcms-navigation-element-item-children{z-index:10;}';
 
-    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-buttons{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-button-toggle{cursor:pointer;}';
-    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-additional-buttons{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-items-container{box-sizing:border-box;position:absolute;z-index:10;}';
-    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .template-navigation-items-container:not([data-bearcms-template-visibility="visible"]){display:none;}';
-    echo 'body .template-navigation-container[data-nav-type="button-drop-down"] .bearcms-navigation-element-item-children{display:none !important;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"] .template-navigation-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"] .template-navigation-button-toggle{cursor:pointer;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"] .template-navigation-additional-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"] .template-navigation-items-container{box-sizing:border-box;position:absolute;z-index:10;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"] .template-navigation-items-container:not([data-bearcms-template-visibility="visible"]){display:none;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonDropDown"] .bearcms-navigation-element-item-children{display:none !important;}';
 
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-buttons{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-button-toggle{cursor:pointer;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-additional-buttons{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay{position:fixed;top:0;left:0;z-index:10;width:100%;height:100%;overscroll-behavior:contain;overflow:hidden;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay .template-navigation-items-background{position:fixed;top:0;left:0;width:100vw;height:100vh;overflow:hidden;opacity:1;transition:opacity 500ms;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay .template-navigation-items-container{position:fixed;top:0;transform:translateX(0);transition:transform 500ms,box-shadow 500ms;box-sizing:border-box;overflow:auto;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-left"] .template-navigation-items-overlay .template-navigation-items-container{left:0;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-right"] .template-navigation-items-overlay .template-navigation-items-container{right:0;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]){pointer-events:none;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-background{opacity:0;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-left"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-container{transform:translateX(-100%);box-shadow:unset;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"][data-nav-layout-button-overlay="toggle-right"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-container{transform:translateX(100%);box-shadow:unset;}';
-    echo 'body .template-navigation-container[data-nav-type="button-overlay"] .bearcms-navigation-element-item-children{display:none !important;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-button-toggle{cursor:pointer;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-additional-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-items-overlay{position:fixed;top:0;left:0;z-index:10;width:100%;height:100%;overscroll-behavior:contain;overflow:hidden;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-items-overlay .template-navigation-items-background{position:fixed;top:0;left:0;width:100vw;height:100vh;overflow:hidden;opacity:1;transition:opacity 500ms;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-items-overlay .template-navigation-items-container{position:fixed;top:0;transform:translateX(0);transition:transform 500ms,box-shadow 500ms;box-sizing:border-box;overflow:auto;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"][data-bearcms-universal-theme-navigation-buttons-layout-button-overlay="toggleLeft"] .template-navigation-items-overlay .template-navigation-items-container{left:0;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"][data-bearcms-universal-theme-navigation-buttons-layout-button-overlay="toggleReft"] .template-navigation-items-overlay .template-navigation-items-container{right:0;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]){pointer-events:none;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-background{opacity:0;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"][data-bearcms-universal-theme-navigation-buttons-layout-button-overlay="toggleLeft"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-container{transform:translateX(-100%);box-shadow:unset;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"][data-bearcms-universal-theme-navigation-buttons-layout-button-overlay="toggleReft"] .template-navigation-items-overlay:not([data-bearcms-template-visibility="visible"]) .template-navigation-items-container{transform:translateX(100%);box-shadow:unset;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonOverlay"] .bearcms-navigation-element-item-children{display:none !important;}';
 
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-buttons{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-button-toggle{cursor:pointer;}';
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-additional-buttons{display:flex;}';
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-items-container{box-sizing:border-box;max-width:100vw;}';
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .bearcms-navigation-element-item{display:block !important;}';
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .template-navigation-items-container:not([data-bearcms-template-visibility="visible"]){display:none;}';
-    echo 'body .template-navigation-container[data-nav-type="button-block"] .bearcms-navigation-element-item-children{display:none !important;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .template-navigation-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .template-navigation-button-toggle{cursor:pointer;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .template-navigation-additional-buttons{display:flex;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .template-navigation-items-container{box-sizing:border-box;max-width:100vw;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .bearcms-navigation-element-item{display:block !important;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .template-navigation-items-container:not([data-bearcms-template-visibility="visible"]){display:none;}';
+    echo 'body .template-navigation-container[data-bearcms-universal-theme-navigation-type="buttonBlock"] .bearcms-navigation-element-item-children{display:none !important;}';
+
+    echo 'body .template-navigation-container [data-bearcms-universal-theme-navigation-content-align="left"]{justify-content:start;}';
+    echo 'body .template-navigation-container [data-bearcms-universal-theme-navigation-content-align="center"]{justify-content:center;}';
+    echo 'body .template-navigation-container [data-bearcms-universal-theme-navigation-content-align="right"]{justify-content:end;}';
 
     if ($headerLayout === 'horizontal') {
         echo 'body .template-navigation-container{flex:1 1 auto;min-width:0;}';
