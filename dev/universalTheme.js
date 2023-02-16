@@ -31,6 +31,9 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
         var fragment = document.createDocumentFragment();
         function update() {
             var navType = containerElement.getAttribute('data-bearcms-universal-theme-navigation-type');
+            if (navType === null) {
+                return;
+            }
             var buttonsLayoutSuffix = 'horizontal';
             if (navType === 'buttonBlock') {
                 buttonsLayoutSuffix = 'button-block';
@@ -208,6 +211,12 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
 
         window.addEventListener('resize', update);
         window.addEventListener('orientationchange', update);
+        window.addEventListener('orientationchange', update);
+        window.addEventListener('css-to-attributes-change', function (event) {
+            if (event.elements.indexOf(containerElement) !== -1) {
+                update();
+            }
+        });
         update();
         (new MutationObserver(update)).observe(containerElement, { attributes: true, childList: true, subtree: true });
     };
