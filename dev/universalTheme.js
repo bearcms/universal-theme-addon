@@ -16,18 +16,18 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
         var additionalButtons = document.querySelector('.template-navigation-additional-buttons');
         var hasAdditionalButtons = additionalButtons !== null;
         var setNavigationMenuType = function (type) {
-            var navigationMenuElement = element.querySelector('ul'); // must be inside wo work after nav element update
+            var navigationMenuElement = element.querySelector('ul'); // must be inside to work after nav element update
             if (navigationMenuElement !== null) {
                 navigationMenuElement.setAttribute('data-nm-type', type);
             }
         };
-        var getNavigationMenuType = function () {
-            var navigationMenuElement = element.querySelector('ul'); // must be inside wo work after nav element update
-            if (navigationMenuElement !== null) {
-                return navigationMenuElement.getAttribute('data-nm-type');
-            }
-            return null;
-        };
+        // var getNavigationMenuType = function () {
+        //     var navigationMenuElement = element.querySelector('ul'); // must be inside to work after nav element update
+        //     if (navigationMenuElement !== null) {
+        //         return navigationMenuElement.getAttribute('data-nm-type');
+        //     }
+        //     return null;
+        // };
         var fragment = document.createDocumentFragment();
         function update() {
             var navType = containerElement.getAttribute('data-bearcms-universal-theme-navigation-type');
@@ -43,7 +43,7 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                 buttonsLayoutSuffix = 'button-overlay';
             }
             var navLayout = containerElement.getAttribute('data-bearcms-universal-theme-navigation-buttons-layout-' + buttonsLayoutSuffix);
-            var currentUpdateVersion = navType + '/' + navLayout + '/' + getNavigationMenuType();
+            var currentUpdateVersion = navType + '/' + navLayout;//  + '/' + getNavigationMenuType(); dont use menu type because it does not exist for empty navigations
             if (lastUpdateVersion === currentUpdateVersion) {
                 return;
             }
@@ -206,11 +206,11 @@ bearCMS.universalTheme = bearCMS.universalTheme || (function () {
                 });
             }
             setNavigationMenuType(navigationMenuTypeToSet);
-            lastUpdateVersion = navType + '/' + navLayout + '/' + navigationMenuTypeToSet;
+            lastUpdateVersion = currentUpdateVersion;
         };
 
         window.addEventListener('resize', update);
-        window.addEventListener('orientationchange', update);
+        window.addEventListener('load', update);
         window.addEventListener('orientationchange', update);
         window.addEventListener('css-to-attributes-change', function (event) {
             if (event.elements.indexOf(containerElement) !== -1) {
