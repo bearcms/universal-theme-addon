@@ -329,20 +329,20 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
     $navigationItemGroup
         ->addOption($idPrefix . "ItemCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+            "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
             "cssOutput" => [
                 ["rule", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item", "box-sizing:border-box;display:inline-block;max-width:100%;"],
                 ["rule", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;max-width:100%;overflow:hidden;"],
-                ["selector", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item > a"],
+                ["selector", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item{stateSelector(first-child)}{stateSelector(last-child)} > a"],
             ]
         ]);
     $navigationItemSelectedGroup = $navigationItemGroup->addGroup(__("bearcms.themes.universal.options.Selected"));
     $navigationItemSelectedGroup->addOption($idPrefix . "SelectedItemCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item-selected > a", "box-sizing:border-box;"],
-            ["selector", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item-selected > a"],
+            ["selector", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item-selected{stateSelector(first-child)}{stateSelector(last-child)} > a"],
         ]
     ]);
     if ($addSubitem) {
@@ -350,21 +350,21 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
         $navigationItemSubitemGroup
             ->addOption($idPrefix . "SubitemCSS", "css", "", [
                 "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
                 "cssOutput" => [
                     ["rule", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item", "display:block;"],
                     ["rule", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;max-width:100%;overflow:hidden;"],
-                    ["selector", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a"]
+                    ["selector", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item{stateSelector(first-child)}{stateSelector(last-child)} > a"]
                 ]
             ]);
         $navigationItemSubitemSelectedGroup = $navigationItemSubitemGroup->addGroup(__("bearcms.themes.universal.options.Selected"));
         $navigationItemSubitemSelectedGroup
             ->addOption($idPrefix . "SelectedSubitemCSS", "css", "", [
                 "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
                 "cssOutput" => [
                     ["rule", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected > a", "box-sizing:border-box;"],
-                    ["selector", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected > a"]
+                    ["selector", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected{stateSelector(first-child)}{stateSelector(last-child)} > a"]
                 ]
             ]);
     }
