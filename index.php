@@ -25,9 +25,10 @@ $app->bearCMS->themes
 
         $context->assets
             ->addDir('assets')
-            ->addDir('values/files');
+            ->addDir('values/files') // for previous version files
+            ->addDir('values/files2');
 
-        $theme->version = '1.26';
+        $theme->version = '1.27';
 
         $theme->get = function (\BearCMS\Themes\Theme\Customizations $customizations, array $cntx) use ($app, $context) {
             $language = isset($cntx['language']) ? $cntx['language'] : null;
@@ -58,7 +59,7 @@ $app->bearCMS->themes
             ];
             $manifest->media = [
                 [
-                    'filename' => $context->dir . '/assets/1.jpg',
+                    'filename' => $context->dir . '/assets/4.jpg',
                     'width' => 1416,
                     'height' => 1062,
                 ]
