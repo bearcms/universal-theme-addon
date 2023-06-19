@@ -58,6 +58,11 @@ $headerGroup->addOption("headerLayout", "list", __("bearcms.themes.universal.opt
             "value" => "horizontal",
             "name" => __("bearcms.themes.universal.options.Header.Layout.Horizontal"),
             "hint" => __("bearcms.themes.universal.options.Header.Layout.HorizontalDesc")
+        ],
+        [
+            "value" => "custom",
+            "name" => __("bearcms.themes.universal.options.Header.Layout.Custom"),
+            "hint" => __("bearcms.themes.universal.options.Header.Layout.CustomDesc")
         ]
     ],
     "defaultValue" => "navInsideHeaderLast"

@@ -158,6 +158,9 @@ if ($navigationIsVisible && $headerLayout === 'navAboveHeaderContainer') {
 }
 
 if ($headerIsVisible) {
+
+    $isCustomHeaderLayout = $headerLayout === 'custom';
+
     echo '<div class="template-header-container">';
 
     if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderContainerFirst' || $headerLayout === 'navHoverOverHeaderContainer')) {
@@ -170,16 +173,20 @@ if ($headerIsVisible) {
         echo $navigationContent;
     }
 
-    if (isset($headerLogoImage[0])) {
-        $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
-        $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities((string)$headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities((string)$headerLogoImageDetails['height']) . '"/>';
-        echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
-    }
-    if ($headerTitleIsVisible) {
-        echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
-    }
-    if ($headerDescriptionIsVisible) {
-        echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
+    if ($isCustomHeaderLayout) {
+        echo '<component src="bearcms-elements" editable="true" id="header' . $elementsLanguageSuffix . '"/>';
+    } else {
+        if (isset($headerLogoImage[0])) {
+            $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
+            $imageHTML = '<component src="bearcms-image-element" class="template-header-logo" onClick="openUrl" url="' . htmlentities($app->urls->get($homePath)) . '" filename="' . htmlentities($headerLogoImageDetails['filename']) . '" fileWidth="' . htmlentities((string)$headerLogoImageDetails['width']) . '" fileHeight="' . htmlentities((string)$headerLogoImageDetails['height']) . '"/>';
+            echo '<div><div class="template-header-logo-container">' . $imageHTML . '</div></div>';
+        }
+        if ($headerTitleIsVisible) {
+            echo '<div><div class="template-header-title-container"><a class="template-header-title" href="' . htmlentities($app->urls->get($homePath)) . '">' . htmlspecialchars($settings->getTitle((string) $language)) . '</a></div></div>';
+        }
+        if ($headerDescriptionIsVisible) {
+            echo '<div><div class="template-header-description-container"><div class="template-header-description">' . htmlspecialchars($settings->getDescription((string) $language)) . '</div></div></div>';
+        }
     }
 
     if ($navigationIsVisible && ($headerLayout === 'navInsideHeaderLast' || $headerLayout === 'horizontal')) {
@@ -216,7 +223,7 @@ echo '</div>';
 if ($footerIsVisible) {
     echo '<div class="template-footer-container">';
     echo '<footer class="template-footer">';
-    echo '<component src="bearcms-elements" editable="true" class="footer-bearcms-elements" id="footer' . $elementsLanguageSuffix . '"/>';
+    echo '<component src="bearcms-elements" editable="true" id="footer' . $elementsLanguageSuffix . '"/>';
     echo '</footer>';
     echo '</div>';
 }

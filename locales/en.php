@@ -47,6 +47,8 @@ return [
     'bearcms.themes.universal.options.Header.Layout.NavHoverOverHeaderContainerDesc' => 'It\'s floating over the header and it\'s content.',
     'bearcms.themes.universal.options.Header.Layout.Horizontal' => 'Aligned horizontally',
     'bearcms.themes.universal.options.Header.Layout.HorizontalDesc' => 'The header elements (logo, title, description and navigation) are aligned horizontally.',
+    'bearcms.themes.universal.options.Header.Layout.Custom' => 'Custom content',
+    'bearcms.themes.universal.options.Header.Layout.CustomDesc' => 'You can add custom content',
     'bearcms.themes.universal.options.Navigation.Type' => 'Type',
     'bearcms.themes.universal.options.Navigation.Type.Horizontal' => 'Horizontal',
     'bearcms.themes.universal.options.Navigation.Type.HorizontalDesc' => 'All the navigation links are shown horizontally and there are drop downs for the subpages.',
