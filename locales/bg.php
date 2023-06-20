@@ -48,7 +48,7 @@ return [
     'bearcms.themes.universal.options.Header.Layout.Horizontal' => 'Хоризонтална подредба',
     'bearcms.themes.universal.options.Header.Layout.HorizontalDesc' => 'Елементите в хедъра (лого, заглавие, описание и навигация) са подредени хоризонтално.',
     'bearcms.themes.universal.options.Header.Layout.Custom' => 'Елементи по избор',
-    'bearcms.themes.universal.options.Header.Layout.CustomDesc' => 'Може да добавите елементи по ваш избор',
+    'bearcms.themes.universal.options.Header.Layout.CustomDesc' => 'Дава възможност да добавите елементи по ваш избор (подобно на футъра)',
     'bearcms.themes.universal.options.Navigation.Type' => 'Вид',
     'bearcms.themes.universal.options.Navigation.Type.Horizontal' => 'Хоризонтална подредба',
     'bearcms.themes.universal.options.Navigation.Type.HorizontalDesc' => 'Връзките са подредени хоризонтално и показват се подменюта за подстраниците.',
