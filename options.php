@@ -564,9 +564,7 @@ $homePageSpecialBlockGroup
         ]
     ]);
 $homePageSpecialBlockGroup
-    ->addElementsGroup('homePageSpecialContentBlockElements', '.template-homepage-special-content-block', [
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState"]
-    ]);
+    ->addElementsGroup('homePageSpecialContentBlockElements', '.template-homepage-special-content-block');
 
 $homePageSpecialBlockContainerGroup = $homePageSpecialBlockGroup->addGroup(__("bearcms.themes.universal.options.Container"));
 $homePageSpecialBlockContainerGroup
@@ -590,9 +588,7 @@ $contentGroup
     ]);
 
 $contentGroup
-    ->addElementsGroup('contentElements', '.template-content', [
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"]
-    ]);
+    ->addElementsGroup('contentElements', '.template-content');
 
 $contentElementsContainerGroup = $contentGroup->addGroup(__("bearcms.themes.universal.options.Container"));
 $contentElementsContainerGroup
@@ -630,9 +626,7 @@ $footerGroup
     ]);
 
 $footerGroup
-    ->addElementsGroup('footerElements', '.template-footer', [
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"]
-    ]);
+    ->addElementsGroup('footerElements', '.template-footer');
 
 $footerContainerGroup = $footerGroup->addGroup(__("bearcms.themes.universal.options.Container"));
 $footerContainerGroup
