@@ -65,7 +65,10 @@ $headerGroup->addOption("headerLayout", "list", __("bearcms.themes.universal.opt
             "hint" => __("bearcms.themes.universal.options.Header.Layout.CustomDesc")
         ]
     ],
-    "defaultValue" => "navInsideHeaderLast"
+    "defaultValue" => "navInsideHeaderLast",
+    "onHighlight" => [
+        ["cssSelector", ".template-header"]
+    ]
 ]);
 $headerGroup->addOption("headerVisibility", "list", __("bearcms.themes.universal.options.Visibility"), [
     "values" => [
@@ -78,7 +81,10 @@ $headerGroup->addOption("headerVisibility", "list", __("bearcms.themes.universal
             "name" => __("bearcms.themes.universal.options.Hidden")
         ]
     ],
-    "defaultValue" => "1"
+    "defaultValue" => "1",
+    "onHighlight" => [
+        ["cssSelector", ".template-header"]
+    ]
 ]);
 $headerGroup->addOption("headerCSS", "css", "", [
     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -124,7 +130,10 @@ $headerTitleGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "1"
+        "defaultValue" => "1",
+        "onHighlight" => [
+            ["cssSelector", ".template-header-title"]
+        ]
     ])
     ->addOption("headerTitleCSS", "css", "", [
         "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
@@ -157,7 +166,10 @@ $headerDescriptionGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "1"
+        "defaultValue" => "1",
+        "onHighlight" => [
+            ["cssSelector", ".template-header-description"]
+        ]
     ])
     ->addOption("headerDescriptionCSS", "css", "", [
         "cssTypes" => ["cssText", "cssTextShadow", "cssBackground", "cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
@@ -191,7 +203,10 @@ $navigationGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "1"
+        "defaultValue" => "1",
+        "onHighlight" => [
+            ["cssSelector", ".template-navigation-container"]
+        ]
     ])
     ->addOption("navigationType", "list", __("bearcms.themes.universal.options.Navigation.Type"), [
         "values" => [
@@ -554,7 +569,10 @@ $homePageSpecialBlockGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "1"
+        "defaultValue" => "1",
+        "onHighlight" => [
+            ["cssSelector", ".template-homepage-special-content-block"]
+        ]
     ])
     ->addOption("homePageSpecialContentBlockCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -614,7 +632,10 @@ $footerGroup
                 "name" => __("bearcms.themes.universal.options.Hidden")
             ]
         ],
-        "defaultValue" => "1"
+        "defaultValue" => "1",
+        "onHighlight" => [
+            ["cssSelector", ".template-footer"]
+        ]
     ])
     ->addOption("footerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
