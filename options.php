@@ -291,7 +291,7 @@ $navigationStoreCartButtonGroup
         ]
     ]);
 
-$addNavigationType = function ($group, string $idPrefix, string $selectorPrefix, string $navigationContentAlignSelector) {
+$addNavigationType = function ($group, string $idPrefix, string $selectorPrefix, string $navigationContentAlignSelector): void {
     $group->addOption($idPrefix . "CSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
         "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState"],
@@ -322,7 +322,7 @@ $addNavigationType = function ($group, string $idPrefix, string $selectorPrefix,
     ]);
 };
 
-$addNavigationTypeContainer = function ($group, string $idPrefix, string $selectorPrefix) {
+$addNavigationTypeContainer = function ($group, string $idPrefix, string $selectorPrefix): void {
     $container = $group->addGroup(__("bearcms.themes.universal.options.Container"));
     $container
         ->addOption($idPrefix . "ContainerCSS", "css", "", [
@@ -335,7 +335,7 @@ $addNavigationTypeContainer = function ($group, string $idPrefix, string $select
         ]);
 };
 
-$addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPrefix, bool $addContainer, bool $addSubitem) {
+$addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPrefix, bool $addContainer, bool $addSubitem): void {
     $elementsGroup = $group->addGroup(__('bearcms.themes.universal.options.Navigation.Items'));
     $elementsGroup->addOption($idPrefix . "ItemsCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -402,7 +402,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
     }
 };
 
-$addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $selectorPrefix, $attributeSuffix) {
+$addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $selectorPrefix, $attributeSuffix): void {
     $group->addOption($idPrefix . "ButtonsLayout", "list", __('bearcms.themes.universal.options.Navigation.ButtonsLayout'), [
         "values" => [
             [
@@ -423,7 +423,7 @@ $addNavigationTypeButtonsLayout = function ($group, string $idPrefix, string $se
     ]);
 };
 
-$addNavigationTypeToggleButton = function ($group, string $idPrefix, string $selectorPrefix) {
+$addNavigationTypeToggleButton = function ($group, string $idPrefix, string $selectorPrefix): void {
     $toggleButton = $group->addGroup(__('bearcms.themes.universal.options.Navigation.ToggleButton'));
     $toggleButton->addOption($idPrefix . "ToggleButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
@@ -445,7 +445,7 @@ $addNavigationTypeToggleButton = function ($group, string $idPrefix, string $sel
         ]);
 };
 
-$addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string $selectorPrefix) {
+$addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string $selectorPrefix): void {
     $additionalButtons = $group->addGroup(__('bearcms.themes.universal.options.Navigation.AdditionalButtons'));
     $storeCartButton = $additionalButtons->addGroup(__('bearcms.themes.universal.options.Navigation.StoreCartButton'));
     $storeCartButton->addOption($idPrefix . "StoreCartButtonCSS", "css", "", [

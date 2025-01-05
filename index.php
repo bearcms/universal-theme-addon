@@ -12,7 +12,7 @@ use BearFramework\App;
 $app = App::get();
 
 $app->bearCMS->themes
-    ->register('bearcms/universal', function (\BearCMS\Themes\Theme $theme) use ($app) {
+    ->register('bearcms/universal', function (\BearCMS\Themes\Theme $theme) use ($app): void {
         $context = $app->contexts->get(__DIR__);
 
         $app->localization
@@ -73,7 +73,7 @@ $app->bearCMS->themes
             return $manifest;
         };
 
-        $updateValues = function (array $values = null) {
+        $updateValues = function (?array $values = null) {
             if (is_array($values)) {
                 if (isset($values['navigationPosition']) && !isset($values['headerLayout'])) {
                     $navigationPosition = \BearCMS\Internal\Themes::getValueDetails($values['navigationPosition']);
@@ -140,7 +140,7 @@ $app->bearCMS->themes
                                     }
                                 }
                             }
-                            $setBackgroundImageForAllStates = function (string $filename) use (&$navigationItemCSS, $type) {
+                            $setBackgroundImageForAllStates = function (string $filename) use (&$navigationItemCSS, $type): void {
                                 $defaultColor = '#ffffff';
                                 $defaultStateColor = null;
                                 $defaultPaddingLeft = '15px';
@@ -351,7 +351,7 @@ $app->bearCMS->themes
         }
 
         $app->clientPackages
-            ->add('-bearcms-universal-theme', function (IvoPetkov\BearFrameworkAddons\ClientPackage $package) use ($context) {
+            ->add('-bearcms-universal-theme', function (IvoPetkov\BearFrameworkAddons\ClientPackage $package) use ($context): void {
                 //$package->addJSCode(file_get_contents($context->dir . '/dev/universalTheme.js')); // dev mode
                 $package->addJSCode(include $context->dir . '/assets/universalTheme.js.min.php');
             });
