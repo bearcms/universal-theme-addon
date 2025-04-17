@@ -88,7 +88,7 @@ $headerGroup->addOption("headerVisibility", "list", __("bearcms.themes.universal
 ]);
 $headerGroup->addOption("headerCSS", "css", "", [
     "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-    "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+    "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
     "cssOutput" => [
         ["rule", ".template-header", "box-sizing:border-box;"],
         ["selector", ".template-header"]
@@ -100,7 +100,7 @@ $headerLogoGroup
     ->addOption("headerLogoImage", "image", __("bearcms.themes.universal.options.Image"))
     ->addOption("headerLogoImageCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-logo", "box-sizing:border-box;overflow:hidden;font-size:0;"],
             ["selector", ".template-header-logo"]
@@ -110,7 +110,7 @@ $headerLogoContainerGroup = $headerLogoGroup->addGroup(__("bearcms.themes.univer
 $headerLogoContainerGroup
     ->addOption("headerLogoImageContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-logo-container", "box-sizing:border-box;"],
             ["selector", ".template-header-logo-container"]
@@ -136,7 +136,7 @@ $headerTitleGroup
         ]
     ])
     ->addOption("headerTitleCSS", "css", "", [
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-title", "box-sizing:border-box;display:inline-block;text-decoration:none;word-break:break-word;"],
             ["selector", ".template-header-title"]
@@ -146,7 +146,7 @@ $headerTitleContainerGroup = $headerTitleGroup->addGroup(__("bearcms.themes.univ
 $headerTitleContainerGroup
     ->addOption("headerTitleContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-title-container", "box-sizing:border-box;"],
             ["selector", ".template-header-title-container"]
@@ -173,7 +173,7 @@ $headerDescriptionGroup
     ])
     ->addOption("headerDescriptionCSS", "css", "", [
         "cssTypes" => ["cssText", "cssTextShadow", "cssBackground", "cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-description", "box-sizing:border-box;display:inline-block;word-break:break-word;"],
             ["selector", ".template-header-description"]
@@ -183,7 +183,7 @@ $headerDescriptionContainerGroup = $headerDescriptionGroup->addGroup(__("bearcms
 $headerDescriptionContainerGroup
     ->addOption("headerDescriptionContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize", "cssTextAlign"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-description-container", "box-sizing:border-box;"],
             ["selector", ".template-header-description-container"]
@@ -294,7 +294,7 @@ $navigationStoreCartButtonGroup
 $addNavigationType = function ($group, string $idPrefix, string $selectorPrefix, string $navigationContentAlignSelector): void {
     $group->addOption($idPrefix . "CSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .template-navigation"]
@@ -327,7 +327,7 @@ $addNavigationTypeContainer = function ($group, string $idPrefix, string $select
     $container
         ->addOption($idPrefix . "ContainerCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState"],
+            "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
             "cssOutput" => [
                 ["rule", $selectorPrefix, "box-sizing:border-box;"],
                 ["selector", $selectorPrefix]
@@ -339,7 +339,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
     $elementsGroup = $group->addGroup(__('bearcms.themes.universal.options.Navigation.Items'));
     $elementsGroup->addOption($idPrefix . "ItemsCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation-items", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .template-navigation-items"]
@@ -349,7 +349,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
     $navigationItemGroup
         ->addOption($idPrefix . "ItemCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
+            "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState", "*/firstChildState", "*/lastChildState"],
             "cssOutput" => [
                 ["rule", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item", "box-sizing:border-box;display:inline-block;max-width:100%;"],
                 ["rule", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;max-width:100%;overflow:hidden;"],
@@ -359,7 +359,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
     $navigationItemSelectedGroup = $navigationItemGroup->addGroup(__("bearcms.themes.universal.options.Selected"));
     $navigationItemSelectedGroup->addOption($idPrefix . "SelectedItemCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState", "*/firstChildState", "*/lastChildState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item-selected > a", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .template-navigation-content > .bearcms-navigation-element-item-selected{stateSelector(first-child)}{stateSelector(last-child)} > a"],
@@ -370,7 +370,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
         $navigationItemSubitemGroup
             ->addOption($idPrefix . "SubitemCSS", "css", "", [
                 "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
+                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState", "*/firstChildState", "*/lastChildState"],
                 "cssOutput" => [
                     ["rule", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item", "display:block;"],
                     ["rule", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item > a", "box-sizing:border-box;display:block;white-space:nowrap;text-overflow:ellipsis;font-family:inherit;color:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;text-decoration:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;text-shadow:inherit;max-width:100%;overflow:hidden;"],
@@ -381,7 +381,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
         $navigationItemSubitemSelectedGroup
             ->addOption($idPrefix . "SelectedSubitemCSS", "css", "", [
                 "cssTypes" => ["cssPadding", "cssText", "cssTextShadow", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/firstChildState", "*/lastChildState"],
+                "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState", "*/firstChildState", "*/lastChildState"],
                 "cssOutput" => [
                     ["rule", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected > a", "box-sizing:border-box;"],
                     ["selector", $selectorPrefix . " .template-navigation-content .bearcms-navigation-element-item-children > .bearcms-navigation-element-item-selected{stateSelector(first-child)}{stateSelector(last-child)} > a"]
@@ -393,7 +393,7 @@ $addNavigationTypeItems = function ($group, string $idPrefix, string $selectorPr
         $container
             ->addOption($idPrefix . "ItemsContainerCSS", "css", "", [
                 "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-                "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState"],
+                "cssOptions" => ["*/hoverState", "*/activeState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
                 "cssOutput" => [
                     ["rule", $selectorPrefix . " .template-navigation-items-container", "box-sizing:border-box;"],
                     ["selector", $selectorPrefix . " .template-navigation-items-container"]
@@ -427,7 +427,7 @@ $addNavigationTypeToggleButton = function ($group, string $idPrefix, string $sel
     $toggleButton = $group->addGroup(__('bearcms.themes.universal.options.Navigation.ToggleButton'));
     $toggleButton->addOption($idPrefix . "ToggleButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation-button-toggle", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .template-navigation-button-toggle"]
@@ -437,7 +437,7 @@ $addNavigationTypeToggleButton = function ($group, string $idPrefix, string $sel
     $toggleButtonContainer
         ->addOption($idPrefix . "ToggleButtonContainerCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+            "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
             "cssOutput" => [
                 ["rule", $selectorPrefix . " .template-navigation-button-toggle-container", "box-sizing:border-box;"],
                 ["selector", $selectorPrefix . " .template-navigation-button-toggle-container"]
@@ -450,7 +450,7 @@ $addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string
     $storeCartButton = $additionalButtons->addGroup(__('bearcms.themes.universal.options.Navigation.StoreCartButton'));
     $storeCartButton->addOption($idPrefix . "StoreCartButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .bearcms-navigation-button-store-cart", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .bearcms-navigation-button-store-cart"]
@@ -459,7 +459,7 @@ $addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string
     $searchButton = $additionalButtons->addGroup(__('bearcms.themes.universal.options.Navigation.SearchButton'));
     $searchButton->addOption($idPrefix . "SearchButtonCSS", "css", "", [
         "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .bearcms-navigation-button-search", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .bearcms-navigation-button-search"]
@@ -469,7 +469,7 @@ $addNavigationTypeAdditionalButtons = function ($group, string $idPrefix, string
     $additionalButtonsContainer
         ->addOption($idPrefix . "AdditionalButtonsContainerCSS", "css", "", [
             "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-            "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+            "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
             "cssOutput" => [
                 ["rule", $selectorPrefix . " .template-navigation-additional-buttons", "box-sizing:border-box;"],
                 ["selector", $selectorPrefix . " .template-navigation-additional-buttons"]
@@ -522,7 +522,7 @@ $addNavigationTypeItems($typeGroup, $idPrefix, $selectorPrefix, true, false);
 $closeButtonGroup = $typeGroup->addGroup(__('bearcms.themes.universal.options.Navigation.Type.ButtonOverlay.CloseButton'));
 $closeButtonGroup->addOption($idPrefix . "CloseButtonCSS", "css", "", [
     "cssTypes" => ["cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState"],
+    "cssOptions" => ["*/hoverState", "*/activeState", "*/focusState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
     "cssOutput" => [
         ["rule", $selectorPrefix . " .template-navigation-items-close-button", "box-sizing:border-box;cursor:pointer;"],
         ["selector", $selectorPrefix . " .template-navigation-items-close-button"]
@@ -532,7 +532,7 @@ $closeButtonGroupContainer = $closeButtonGroup->addGroup(__("bearcms.themes.univ
 $closeButtonGroupContainer
     ->addOption($idPrefix . "CloseButtonContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", $selectorPrefix . " .template-navigation-items-close-button-container", "box-sizing:border-box;"],
             ["selector", $selectorPrefix . " .template-navigation-items-close-button-container"]
@@ -549,7 +549,7 @@ $headerContainerGroup = $headerGroup->addGroup(__("bearcms.themes.universal.opti
 $headerContainerGroup
     ->addOption("headerContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-header-container", "box-sizing:border-box;"],
             ["selector", ".template-header-container"]
@@ -598,7 +598,7 @@ $contentGroup = $options->addGroup(__("bearcms.themes.universal.options.Content"
 $contentGroup
     ->addOption("contentCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-content", "box-sizing:border-box;"],
             ["selector", ".template-content"]
@@ -612,7 +612,7 @@ $contentElementsContainerGroup = $contentGroup->addGroup(__("bearcms.themes.univ
 $contentElementsContainerGroup
     ->addOption("contentContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-content-container", "box-sizing:border-box;"],
             ["selector", ".template-content-container"]
@@ -639,7 +639,7 @@ $footerGroup
     ])
     ->addOption("footerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-footer", "box-sizing:border-box;"],
             ["selector", ".template-footer"]
@@ -653,7 +653,7 @@ $footerContainerGroup = $footerGroup->addGroup(__("bearcms.themes.universal.opti
 $footerContainerGroup
     ->addOption("footerContainerCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssMargin", "cssBorder", "cssRadius", "cssShadow", "cssBackground", "cssSize"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["rule", ".template-footer-container", "box-sizing:border-box;"],
             ["selector", ".template-footer-container"]
@@ -664,7 +664,7 @@ $windowGroup = $options->addGroup(__("bearcms.themes.universal.options.Window"))
 $windowGroup
     ->addOption("bodyCSS", "css", "", [
         "cssTypes" => ["cssPadding", "cssBorder", "cssRadius", "cssShadow", "cssBackground"],
-        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState"],
+        "cssOptions" => ["*/hoverState", "*/screenSizeState", "*/pageTypeState", "*/tagsState"],
         "cssOutput" => [
             ["selector", ".template-body"]
         ]
