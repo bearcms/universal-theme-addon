@@ -142,7 +142,7 @@ if ($navigationIsVisible) {
     $navigationContent .= '<div class="template-navigation-container">';
     $navigationContent .= '<div class="template-navigation">';
     $navigationContent .= '<nav class="template-navigation-items">';
-    $navigationContent .= '<component src="bearcms-navigation-element" menuType="responsive" editable="true" id="main-navigation' . $elementsLanguageSuffix . '" source="allPages" showHomeLink="true" class="template-navigation-content" selectedPath="' . (string) $app->request->path . '"/>';
+    $navigationContent .= '<component src="bearcms-navigation-element" menuType="responsive" editable="true" id="main-navigation' . htmlentities($elementsLanguageSuffix) . '" source="allPages" showHomeLink="true" class="template-navigation-content" selectedPath="' . htmlentities((string) $app->request->path) . '"/>';
     $navigationContent .= '</nav>';
     $navigationContent .= '<div class="template-navigation-additional-buttons">' . $additionalButtons . '</div>';
     $navigationContent .= '</div>';
@@ -174,7 +174,7 @@ if ($headerIsVisible) {
     }
 
     if ($isCustomHeaderLayout) {
-        echo '<component src="bearcms-elements" editable="true" id="header' . $elementsLanguageSuffix . '"/>';
+        echo '<component src="bearcms-elements" editable="true" id="header' . htmlentities($elementsLanguageSuffix) . '"/>';
     } else {
         if (isset($headerLogoImage[0])) {
             $headerLogoImageDetails = $customizations->getAssetDetails($headerLogoImage, ['filename', 'width', 'height']);
@@ -209,7 +209,7 @@ if ($navigationIsVisible && $headerLayout === 'navBelowHeaderContainer') {
 if ($isHomePage && $homePageSpecialContentBlockIsVisible) {
     echo '<div class="template-homepage-special-content-block-container">';
     echo '<section class="template-homepage-special-content-block">';
-    echo '<component src="bearcms-elements" editable="true" class="homepage-special-bearcms-elements" id="homepage-special' . $elementsLanguageSuffix . '"/>';
+    echo '<component src="bearcms-elements" editable="true" class="homepage-special-bearcms-elements" id="homepage-special' . htmlentities($elementsLanguageSuffix) . '"/>';
     echo '</section>';
     echo '</div>';
 }
@@ -223,7 +223,7 @@ echo '</div>';
 if ($footerIsVisible) {
     echo '<div class="template-footer-container">';
     echo '<footer class="template-footer">';
-    echo '<component src="bearcms-elements" editable="true" id="footer' . $elementsLanguageSuffix . '"/>';
+    echo '<component src="bearcms-elements" editable="true" id="footer' . htmlentities($elementsLanguageSuffix) . '"/>';
     echo '</footer>';
     echo '</div>';
 }
